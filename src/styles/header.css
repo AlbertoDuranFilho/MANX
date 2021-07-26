@@ -1,0 +1,25 @@
+.container-header {
+    width: 100%;
+    max-width: 1000px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+#connect{
+    width: 40px;
+    height: 40px;
+    background: red;
+
+    margin-right: 40px;
+    border-radius: 50px;
+
+    border: 1px solid #920303;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px 0px;
+
+}

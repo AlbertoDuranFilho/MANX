@@ -1,0 +1,39 @@
+.container-main{
+    align-items: center;
+}
+
+.grid-area{
+    width: 100%;
+    max-width: 1270px;
+    height: 100vh;
+    max-height: 820px;
+
+    background: #F9F8FD;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 20px;
+
+    display: grid;
+    grid-template-columns: 20% 40% 40%;
+	grid-template-rows: 16% 47% 37%;
+    grid-template-areas: 
+        "aside header header "
+        'aside card .. '
+        "aside card-small .. "
+    ;
+}
+
+.grid-aside{
+    grid-area: aside;
+}
+
+.grid-header{
+    grid-area: header;
+}
+
+.grid-card-medium{
+    grid-area: card;
+}
+
+.grid-card-small{
+    grid-area: card-small;
+}
