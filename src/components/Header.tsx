@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import { socket } from '../App';
 import { AnalogContext } from '../contexts/AnalogContext';
@@ -6,25 +6,24 @@ import { ToogleContext } from '../contexts/ToogleContext';
 
 import '../styles/header.css'
 
+    var digitalOutput = new Array(8);
+    var digitalInput = new Array(8);
+    var analog = new Array(4);
+
+    var lastReceived = new Date(); 
+
 export function Header(){
-    const {setFirstInput, setSecondInput, setThirdInput} = useContext(ToogleContext);
+    const {setFirstOutput, setSecondOutput, setThirdOutput} = useContext(ToogleContext);
     const {setFirstAnalog} = useContext(AnalogContext);
     socket.binaryType= 'arraybuffer';
 
-    
-    useEffect(() => {
-        var connect = document.getElementById('connect')!;
-        var typeResponseBytes = -1;
-
-        var digitalOutput = new Array(8);
-        var digitalInput = new Array(8);
-        var analog = new Array(4);
-
-        var lastReceived = new Date(); 
+    var typeResponseBytes = -1;    
 
         //---------------- Função que é acionada quando o Server responde ----------------\\
 
         socket.addEventListener("message", function(event){
+            var connect = document.getElementById('connect')!;
+
             typeResponseBytes = (event.data instanceof ArrayBuffer) ? 1 : 0;
             connect.style.background = '#04a01e';
             connect.style.border = '1px solid #047717';
@@ -56,31 +55,33 @@ export function Header(){
                 } 
                 //------------ Comando de Acionar cada Saída Digital-------------\\
                 // Primeira Saída\\
-                setFirstInput(digitalOutput[0]?true : false);
+                setFirstOutput(digitalOutput[0]?true : false);
                 
                 // Segunda Saída\\
-                setSecondInput(digitalOutput[1]?true : false);
+                setSecondOutput(digitalOutput[1]?true : false);
 
                 // Terceira Saída\\
-                setThirdInput(digitalOutput[2]?true : false)
+                setThirdOutput(digitalOutput[2]?true : false)
 
                 //----------- FIM------------------\\
                 
                 //------------ Comando de gravar no estado "analog" o valor dos sensores analogicos-------------\\
                 // Primeira Saída\\
-                if(analog[0]){
+                if(analog[0] >= 0){
                     setFirstAnalog(Math.trunc((analog[0] * 100) / 1023));
                 }
                 
                 //----------- FIM------------------\\
             } else{
-                console.log('Não foi')
+                console.log(event.data)
             }
         }) 
 
         //---------------- Função que é acionada quando o Websocket é aberto ----------------\\
         
         socket.onopen = () => {
+            var connect = document.getElementById('connect')!;
+
             connect.style.background = '#04a01e';
             connect.style.border = '1px solid #047717';
          
@@ -89,18 +90,18 @@ export function Header(){
                 var dataAtual = new Date();
                 var num = dataAtual.getTime() - lastReceived.getTime();
 
-                if(num > 3000){
+                if(num > 11000){
                     connect.style.background = 'red';
                     connect.style.border = '1px solid #920303';
                 }
                 socket.send("AT+READALL?");
                 
-            },2000)
+            },10000)
 
 
         };
         
-    })
+   
 
     return(
         <div className='container-header'>

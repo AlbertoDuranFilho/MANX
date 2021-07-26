@@ -13,12 +13,12 @@
     border-radius: 20px;
 
     display: grid;
-    grid-template-columns: 20% 40% 40%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
 	grid-template-rows: 16% 47% 37%;
     grid-template-areas: 
-        "aside header header "
-        'aside card .. '
-        "aside card-small .. "
+        "aside header header header header "
+        'aside card-medium card-medium card-big card-big'
+        "aside card-small card-small-2 .. .. "
     ;
 }
 
@@ -31,9 +31,18 @@
 }
 
 .grid-card-medium{
-    grid-area: card;
+    grid-area: card-medium;
+}
+
+.grid-card-big{
+    grid-area: card-big;
 }
 
 .grid-card-small{
     grid-area: card-small;
+}
+
+.grid-card-small-2{
+    /* margin-left: -20px; */
+    grid-area: card-small-2;
 }

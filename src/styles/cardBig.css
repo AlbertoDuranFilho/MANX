@@ -1,0 +1,42 @@
+.container-card-big{
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    max-height: 300px;
+
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+
+.button-grafic{
+   width: 120px;
+   height: 40px;
+   margin-bottom: 10px;
+   
+   background: #0093E9;
+   color: #ffffff;
+
+   border: none;
+   border-radius: 50px;
+
+   transition: 0.2s;
+   align-self: flex-end;
+   margin-right: 10px;
+}
+
+.button-grafic:hover{
+    background: #025180;
+    cursor: pointer;
+}
+
+.container-card-big h1{
+    margin-top: 5px;
+    margin-left: 10px;
+}

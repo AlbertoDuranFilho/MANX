@@ -3,26 +3,52 @@ import Toggle from 'react-toggle';
 import { ToogleContext } from '../contexts/ToogleContext';
 
 import Iluminacao from '../assets/iluminacao.svg';
+import { socket } from '../App';
 
 import '../styles/cardSmall.css';
-import { socket } from '../App';
 
 type CardProps = {
     title: string;
     photo: string;
     checked:  boolean;
+    saida: string;
 };
 
 export function CardSmall(props: CardProps){
-    const {firstInput, setFirstInput} = useContext(ToogleContext);
+    const {firstOutput, setFirstOutput, secondOutput, setSecondOutput, thirdOutput, setThirdOutput} = useContext(ToogleContext);
+    
     
     function handleChange(){
-        if(firstInput === false){
-            setFirstInput(true);
-            socket.send("AT+TURNON=Q0");
-        } else{
-            setFirstInput(false)
-            socket.send("AT+TURNOFF=Q0");
+        switch(props.saida){
+            case "0":
+                if(firstOutput === false){
+                    setFirstOutput(true);
+                    socket.send("AT+TURNON=Q" + props.saida);
+                } else{
+                    setFirstOutput(false)
+                    socket.send("AT+TURNOFF=Q" + props.saida);
+                }
+            break;
+    
+            case "1":
+                if(secondOutput === false){
+                    setSecondOutput(true);
+                    socket.send("AT+TURNON=Q" + props.saida);
+                } else{
+                    setSecondOutput(false)
+                    socket.send("AT+TURNOFF=Q" + props.saida);
+                }
+            break
+            
+            case "2":
+                if(thirdOutput === false){
+                    setThirdOutput(true);
+                    socket.send("AT+TURNON=Q" + props.saida);
+                } else{
+                    setThirdOutput(false)
+                    socket.send("AT+TURNOFF=Q" + props.saida);
+                }
+            break
         }
     }
           

@@ -4,9 +4,14 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 
 import "react-circular-progressbar/dist/styles.css";
 import '../styles/cardMedium.css';
+import { socket } from '../App';
 
 export function CardMedium(){
     const {firstAnalog} = useContext(AnalogContext);
+
+    function handleAnalogRead(){
+        socket.send("AT+READ=A0");
+    }
 
     return (
         <div className='container-card-medium'>
@@ -19,7 +24,7 @@ export function CardMedium(){
                     text={`${firstAnalog}%`}
                 />
             </div>
-            <button className='button-bomba'>Acionar bomba</button>
+            <button onClick={handleAnalogRead} className='button-bomba'>Acionar bomba</button>
         </div>
     )
 }
