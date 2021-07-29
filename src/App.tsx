@@ -1,6 +1,7 @@
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
 import { AnalogProvider } from './contexts/AnalogContext';
+import { DateProvider } from './contexts/DateContext';
 import { ToogleProvider } from './contexts/ToogleContext';
 import { Dashboard } from "./pages/dashboard";
 
@@ -12,7 +13,9 @@ function App() {
     <div className="App">
       <AnalogProvider>
         <ToogleProvider>
-          <Dashboard />
+          <DateProvider>
+            <Dashboard />
+          </DateProvider>
         </ToogleProvider>
       </AnalogProvider>
     </div>

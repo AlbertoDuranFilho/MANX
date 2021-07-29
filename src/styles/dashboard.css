@@ -39,10 +39,11 @@
 }
 
 .grid-card-small{
+    margin-bottom: 15px;
     grid-area: card-small;
 }
 
 .grid-card-small-2{
-    /* margin-left: -20px; */
+    margin-bottom: 15px;
     grid-area: card-small-2;
 }

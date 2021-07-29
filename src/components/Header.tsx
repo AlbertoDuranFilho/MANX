@@ -1,26 +1,34 @@
+import { useEffect } from 'react';
 import { useContext } from 'react';
 
 import { socket } from '../App';
 import { AnalogContext } from '../contexts/AnalogContext';
+import { DateContext } from '../contexts/DateContext';
 import { ToogleContext } from '../contexts/ToogleContext';
 
 import '../styles/header.css'
 
-    var digitalOutput = new Array(8);
-    var digitalInput = new Array(8);
-    var analog = new Array(4);
+var digitalOutput = new Array(8);
+var digitalInput = new Array(8);
+var tempo = new Array(5);
+var analog = new Array(4);
 
-    var lastReceived = new Date(); 
+
+
+var lastReceived = new Date(); 
 
 export function Header(){
     const {setFirstOutput, setSecondOutput, setThirdOutput} = useContext(ToogleContext);
     const {setFirstAnalog} = useContext(AnalogContext);
+    const {setDataAtual} = useContext(DateContext);
     socket.binaryType= 'arraybuffer';
 
-    var typeResponseBytes = -1;    
+    
 
-        //---------------- Função que é acionada quando o Server responde ----------------\\
-
+    
+    //---------------- Função que é acionada quando o Server responde ----------------\\
+    useEffect(() => {
+        var typeResponseBytes = -1;    
         socket.addEventListener("message", function(event){
             var connect = document.getElementById('connect')!;
 
@@ -52,6 +60,11 @@ export function Header(){
                         
                     }
 
+                    if(String.fromCharCode(view.getUint8(offSet)) === 'T'){
+                        tempo[view.getUint8(offSet+1)] = valueAdressPort; 
+                     
+                    }
+
                 } 
                 //------------ Comando de Acionar cada Saída Digital-------------\\
                 // Primeira Saída\\
@@ -72,11 +85,14 @@ export function Header(){
                 }
                 
                 //----------- FIM------------------\\
+                
             } else{
                 console.log(event.data)
             }
         }) 
 
+    })
+        
         //---------------- Função que é acionada quando o Websocket é aberto ----------------\\
         
         socket.onopen = () => {
@@ -96,6 +112,22 @@ export function Header(){
                 }
                 socket.send("AT+READALL?");
                 
+            },10000)
+
+            setInterval(() => {
+                
+                socket.send("AT+TIME?");
+
+                setTimeout(() => {
+                    var t = 0;
+                    var t1 = tempo[0] & 0x0000ffff;
+                    var t2 = (tempo[1] << 16) & 0xffff0000;
+                    t = t1 | t2;
+                    var date = new Date(t * 1000);
+
+                    setDataAtual(date)
+
+                }, 500)
             },10000)
 
 

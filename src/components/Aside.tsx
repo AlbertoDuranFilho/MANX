@@ -1,8 +1,13 @@
-import '../styles/aside.css'
+import { useContext } from 'react';
+import { DateContext } from '../contexts/DateContext';
+
 import Dashboard from '../assets/dashboard.svg';
 import Logo from '../assets/logo.svg';
+import '../styles/aside.css'
 
 export function Aside(){
+    const {dataAtual} = useContext(DateContext);
+    
     return(
         <div className="container-aside">
 
@@ -17,7 +22,11 @@ export function Aside(){
                 </ul>
             </div>
 
-            <a className='logout' href="/">Logout</a>
+            <div className='DateFormat'>
+                <h1 className='date'>{dataAtual.toLocaleDateString('pt-BR')}</h1>
+                <h1 className='time'>{dataAtual.toLocaleTimeString('pt-BR')}</h1>
+            </div>
+
         </div>
     )
 }
