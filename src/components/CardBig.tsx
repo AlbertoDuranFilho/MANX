@@ -1,7 +1,13 @@
-import { useState } from 'react';
-// import { socket } from '../App';
+import { useState, useContext, useEffect } from 'react';
+import { socket } from '../App';
 import Select from 'react-select';
 import Modal from 'react-modal';
+
+import { Table } from './Table';
+import { TableContext } from '../contexts/TableContext';
+
+import Trash from '../assets/trash.svg';
+import Edit from '../assets/editar.svg';
 
 import '../styles/cardBig.css';
 
@@ -13,18 +19,6 @@ const optionsWeek = [
     { value: 16, label: 'Quinta' },
     { value: 32, label: 'Sexta' },
     { value: 64, label: 'Sabado' }
-  ]
-const optionsTask = [
-    { value: '0', label: 'Tarefa 1' },
-    { value: '1', label: 'Tarefa 2' },
-    { value: '2', label: 'Tarefa 3' },
-    { value: '3', label: 'Tarefa 4' },
-    { value: '4', label: 'Tarefa 5' },
-    { value: '5', label: 'Tarefa 6' },
-    { value: '6', label: 'Tarefa 7' },
-    { value: '7', label: 'Tarefa 8' },
-    { value: '8', label: 'Tarefa 9' },
-    { value: '9', label: 'Tarefa 10' },
   ]
 const optionsTime = [
     { value: '00,00', label: '00:00' },
@@ -85,75 +79,204 @@ const optionsAction = [
     { value: '0', label: 'Desligar' },
     { value: '1', label: 'Ligar' },
   ]
-  var week = 0;
-  var task = '';
-  var time = '';
-  var output = '';
-  var action = '';
-  
-  export function CardBig(){
+
+var week = 0;
+var time = '';
+var output = '';
+var action = '';
+
+export function CardBig(){
     const [modalTaskIsOpen, setModalTaskIsOpen] = useState(false);
     const [modalConfirmation, setModalConfirmation] = useState(false);
+    
+    const { 
+        // isTask,
+        isEnvironment,
+        isEnvironmentTask1,
+        isEnvironmentTask2,
+        isEnvironmentTask3,
+        isEnvironmentTask4,
+        isEnvironmentTask5,
+        isEnvironmentTask6,
+        isEnvironmentTask7,
+        isEnvironmentTask8,
+        isEnvironmentTask9,
+
+        
+        isTime,
+        isTimeTask1,
+        isTimeTask2,
+        isTimeTask3,
+        isTimeTask4,
+        isTimeTask5,
+        isTimeTask6,
+        isTimeTask7,
+        isTimeTask8,
+        isTimeTask9,
+        
+        isDate,
+        isDateTask1,
+        isDateTask2,
+        isDateTask3,
+        isDateTask4,
+        isDateTask5,
+        isDateTask6,
+        isDateTask7,
+        isDateTask8,
+        isDateTask9,
+        
+        isAction,
+        isActionTask1,
+        isActionTask2,
+        isActionTask3,
+        isActionTask4,
+        isActionTask5,
+        isActionTask6,
+        isActionTask7,
+        isActionTask8,
+        isActionTask9
+    } = useContext(TableContext);
+
+    var data = [
+        {id: 0, environmentTask: isEnvironment, timeTasks: isTime, weekDaysTask: isDate, zactionTask: isAction },
+        {id: 1, environmentTask: isEnvironmentTask1, timeTasks: isTimeTask1, weekDaysTask: isDateTask1, zactionTask: isActionTask1 },
+        {id: 2, environmentTask: isEnvironmentTask2, timeTasks: isTimeTask2, weekDaysTask: isDateTask2, zactionTask: isActionTask2 },
+        {id: 3, environmentTask: isEnvironmentTask3, timeTasks: isTimeTask3, weekDaysTask: isDateTask3, zactionTask: isActionTask3 },
+        {id: 4, environmentTask: isEnvironmentTask4, timeTasks: isTimeTask4, weekDaysTask: isDateTask4, zactionTask: isActionTask4 },
+        {id: 5, environmentTask: isEnvironmentTask5, timeTasks: isTimeTask5, weekDaysTask: isDateTask5, zactionTask: isActionTask5 },
+        {id: 6, environmentTask: isEnvironmentTask6, timeTasks: isTimeTask6, weekDaysTask: isDateTask6, zactionTask: isActionTask6 },
+        {id: 7, environmentTask: isEnvironmentTask7, timeTasks: isTimeTask7, weekDaysTask: isDateTask7, zactionTask: isActionTask7 },
+        {id: 8, environmentTask: isEnvironmentTask8, timeTasks: isTimeTask8, weekDaysTask: isDateTask8, zactionTask: isActionTask8 },
+        {id: 9, environmentTask: isEnvironmentTask9, timeTasks: isTimeTask9, weekDaysTask: isDateTask9, zactionTask: isActionTask9 },
+    ];
+
+    useEffect(() => {
+        handleListTableDelete();
+        console.log(data);
+
+        if(data[0].weekDaysTask !== '' || data[1].weekDaysTask !== '' || data[2].weekDaysTask !== '' || data[3].weekDaysTask !== '' || data[4].weekDaysTask !== '' || data[5].weekDaysTask !== '' || data[6].weekDaysTask !== '' || data[7].weekDaysTask !== '' || data[8].weekDaysTask !== '' || data[9].weekDaysTask !== '' || data[0].timeTasks !== '255'){
+
+            handleListTable();
+            
+        } else{
+            handleListTableDelete();
+            console.log("valores vazios");
+        }
+    
+    },[isTime, isTimeTask1, isTimeTask2, isTimeTask3, isTimeTask4, isTimeTask5, isTimeTask6, isTimeTask7, isTimeTask8, isTimeTask9])
 
     function handleOptionsWeek(value : any){
 
-        for(var i = 0; i < 8; i++){
-            week = value[i].value
-            console.log(week)
+        for(var i = 0; i < 9; i++){
+            if(value[i] !== undefined ){
+                // data.weekLabel = value[i].label;
+                week = value[i].value;
+            }
         }
-        // if(value[0] && value[1]){
-        //     week = value[1].value + value[0].value
-        // } 
-        // console.log(week)
-    }
-
-  
-
-    function handleOptionsTask(value : any){
-        task = value.value;
-        console.log(`Número da Tarefa é: ${task}`)
     }
 
     function handleOptionsTime(value : any){
-        time = value.value
-        console.log(`A hora programada é: ${time}`)
-         
+        // data.labelTime = value.label;
+        time = value.value;
     }
 
-    function handleOptionsOutput(value : any){
-        output = value.value
-        console.log(`O valor da saida é: ${output}`)
+    function handleOptionsOutput(value : any ){
+        // data.environmentLabel = value.label
+        output = value.value;
     }
 
-    function handleOptionsAction(value : any){
-        action = value.value
-        console.log(`O valor da ação é: ${action}`)
+    function handleOptionsAction(value : any ){
+        action = value.value;
+        // data.zactionLabel = value.label;
     }
 
     function handleSetTask(){
-        // socket.send(`AT+TASKSET=${task},${output},${time},${action}`)
-        console.log(`AT+TASKSET=${task},${output},${time},${action}`)
-        setModalTaskIsOpen(false);
-        setModalConfirmation(true)
+        if(output !== '' && action !== '' && time !== '' && week !== -1 ){
+            socket.send(`AT+TASKSET=5,${output},1,${time},${action}`)
+            console.log(`5,${output},1,${time},${action}`);
+            setModalTaskIsOpen(false);
+            setModalConfirmation(true);
+
+        } else {
+           alert("Preencha as informações");
+        }
+
     }
 
-
     function openModalTask(){
-        setModalTaskIsOpen(true)
+        week = 0;
+        time = '';
+        output = '';
+        action = '';
+        setModalTaskIsOpen(true);
     }
     
     function closeModalTask() {
         setModalTaskIsOpen(false);
-        setModalConfirmation(true)
+        setModalConfirmation(false);
     }
 
     function closeModalConfirmation() {
-        setModalConfirmation(false)
+        setModalConfirmation(false);
+    }
+    
+   
+
+    function handleListTable(){
+        var table: HTMLTableElement | any =  document.getElementById("tbody")!;
+
+        for(let i = 0; i < data.length; i++){
+            if(data[i].weekDaysTask !== '' ){
+                let tr = table.insertRow();
+
+                let td_ambiente = tr.insertCell(); 
+                let td_hora = tr.insertCell(); 
+                let td_data = tr.insertCell(); 
+                let td_acao = tr.insertCell(); 
+                let td_opcoes = tr.insertCell(); 
+
+                td_ambiente.innerText = data[i].environmentTask;
+                td_hora.innerText = data[i].timeTasks;
+                td_data.innerText = data[i].weekDaysTask;
+                td_acao.innerText = data[i].zactionTask;
+                
+                let imgEdit = document.createElement('img')
+                imgEdit.src = `${Edit}`;
+                
+                let imgDelete = document.createElement('img');
+                imgDelete.src = `${Trash}`;
+                imgDelete.addEventListener('click', function(){handleDeleteRow(data[i].id)}, true);
+                
+                td_opcoes.appendChild(imgEdit);
+                td_opcoes.appendChild(imgDelete);
+            }
+
+        }
+    }
+
+    function handleDeleteRow(id : any){
+
+        for(let i = 0; i < data.length; i++){
+            if(data[i].id === id){
+                socket.send(`AT+TASKCLEAR=${id}`);
+            }    
+            console.log(i);
+        }
+    }
+    
+    function handleListTableDelete(){
+        let tbody = document.getElementById('tbody')!;
+
+        tbody.innerHTML = '';
     }
 
     return (
         <div className='container-card-big'>
-            <h1> Tarefas </h1>
+            <div className='task-header'>
+                <h1> Tarefas </h1>
+                <button onClick={openModalTask} className="button-date" >Nova Tarefa</button>
+            </div>
+            <Table />
                 <Modal 
                     isOpen={modalTaskIsOpen} 
                     className='modal'
@@ -162,35 +285,45 @@ const optionsAction = [
                     shouldCloseOnOverlayClick={false}
                 >
                     <div className='controller' >
-                        <h1>Agende uma terefa</h1>
+                        <div className='title-header'>
+                            <h1>Agende uma terefa</h1>
+                            <button onClick={closeModalTask} className='fechar'>X</button>
+                        </div>
                         <div className='select-days-week'>
                             <p>Dias da Semana</p>
                             <Select 
+                                id='daysWeekSelect'
                                 onChange={handleOptionsWeek} 
                                 options={optionsWeek} 
                                 isMulti  
-                                
                             />
-                        </div>
-
-                        <div className='select-index-task'>
-                            <p>Número da Tarefa</p>
-                            <Select onChange={handleOptionsTask} options={optionsTask}  />
                         </div>
 
                         <div className='select-output'>
                             <p>Ambientes</p> 
-                            <Select onChange={handleOptionsOutput} options={optionsOutput} />
+                            <Select 
+                                onChange={handleOptionsOutput} 
+                                options={optionsOutput} 
+                                id='environmentSelect'
+                            />
                         </div>
 
                         <div className='select-time'>
                             <p>Hora</p> 
-                            <Select onChange={handleOptionsTime} options={optionsTime} />
+                            <Select 
+                                onChange={handleOptionsTime} 
+                                options={optionsTime} 
+                                id='timeSelect'
+                            />
                         </div>
 
                         <div className='select-action'>
                             <p>Ação</p> 
-                            <Select onChange={handleOptionsAction} options={optionsAction} />
+                            <Select 
+                                onChange={handleOptionsAction} 
+                                options={optionsAction}
+                                id='actionSelect' 
+                            />
                         </div>
 
                         <button className='button-confirmation' onClick={handleSetTask} >Confirmar</button>
@@ -210,7 +343,9 @@ const optionsAction = [
                         <button className='button-ok' onClick={closeModalConfirmation}>OK!</button>
                     </div>
                 </Modal>
-            <button onClick={openModalTask} className="button-date" >Acionar bomba</button>
         </div>
     )
+
+    
 }
+

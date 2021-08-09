@@ -1,8 +1,7 @@
 .container-card-big{
     width: 100%;
-    max-width: 500px;
-    height: 100%;
-    max-height: 300px;
+    max-width: 520px;
+    height: 545px;
 
     background: #ffffff;
     border-radius: 10px;
@@ -10,6 +9,7 @@
 
     display: flex;
     flex-direction: column;
+    align-items: center;
 
 }
 
@@ -17,6 +17,8 @@
 .button-date{
    width: 120px;
    height: 30px;
+
+   margin-right: 10px;
    
    background: #0093E9;
    color: #ffffff;
@@ -40,8 +42,17 @@
     font-size: 24px;
 }
 
+.task-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
 
-/* Date Picker */
+    margin-bottom: 10px;
+}
+
+
 
 .controller{
     display: flex;
@@ -56,6 +67,44 @@
 .controller > h1{
     font-size: 28px;
     margin-bottom: 10px;
+}
+
+.title-header{
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+
+    font-size: 12px;
+
+    
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+}
+
+.title-header > h1{
+    margin-left: 25%;
+}
+
+.fechar {
+    background: #b30202;
+    width: 30px;
+    height: 30px;
+
+    color: #ffffff;
+
+    border: none;
+    border-radius: 150px;
+    justify-self: flex-end;
+    font-size: 12px;
+    transition: 0.5s;
+}
+
+.fechar:hover{
+    cursor: pointer;
+    background: rgb(109, 1, 1);
+
 }
 
 
@@ -88,7 +137,7 @@
 .select-action{
     width: 100%;
     max-width: 400px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 
 }
 
@@ -115,13 +164,14 @@
 
 .modal{
     position: absolute;
-    top: 14%;
+    top: 13%;
     left: 30%;
     right: 30%;
-    bottom: 14%;
+    bottom: 13%;
     background-color: #ffffff;
 
     border-radius: 20px;
+    border: none;
   }
 
   .modal-confirmation{

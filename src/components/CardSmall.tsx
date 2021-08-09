@@ -17,7 +17,6 @@ type CardProps = {
 export function CardSmall(props: CardProps){
     const {firstOutput, setFirstOutput, secondOutput, setSecondOutput, thirdOutput, setThirdOutput} = useContext(ToogleContext);
     
-    
     function handleChange(){
         switch(props.saida){
             case "0":
@@ -38,7 +37,7 @@ export function CardSmall(props: CardProps){
                     setSecondOutput(false)
                     socket.send("AT+TURNOFF=Q" + props.saida);
                 }
-            break
+            break;
             
             case "2":
                 if(thirdOutput === false){
@@ -48,7 +47,7 @@ export function CardSmall(props: CardProps){
                     setThirdOutput(false)
                     socket.send("AT+TURNOFF=Q" + props.saida);
                 }
-            break
+            break;
         }
     }
           

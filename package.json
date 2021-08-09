@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -21,10 +23,13 @@
     "react-modal": "^3.14.3",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
+    "react-table": "^7.7.0",
     "react-toggle": "^4.1.2",
     "reconnecting-websocket": "^4.4.0",
     "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "websocket-as-promised": "0.3.0",
+    "ws-await": "^4.2.3"
   },
   "scripts": {
     "start": "react-scripts start",

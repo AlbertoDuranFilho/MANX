@@ -27,15 +27,33 @@
 }
 
 
-.aside-menu ul li{
+.aside-menu ul .list{
     list-style: none;
     display: flex;
-    align-items: center;
+    width: 100%;
+    height: 50px;
     margin-top: 80px;
+
+    align-items: center;
+    padding-left: 30px;
+
+    margin-left: 20px;
+
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.aside-menu ul {
+   width: 100%;
+   min-width: 230px;
+
+}
+
+.aside-menu ul .active{
+    background: #fff;
     
 }
 
-.aside-menu li img{
+.aside-menu .list img{
     width: 20px;
     height: 20px;
     margin-right: 5px;
@@ -47,10 +65,8 @@
     color: #fff;
     transition:  0.2s;    
 }
-
-.aside-menu a:hover{
-    color: rgba(255, 255, 255, 0.418);
-    
+.aside-menu ul .active a{
+    color: #000;
 }
 
 .DateFormat{
