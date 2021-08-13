@@ -13,8 +13,7 @@ export function Table (){
                         <th>Opções</th>
                     </tr>
                 </thead>
-                <tbody id='tbody'>
-                </tbody>
+                <tbody id='tbody'></tbody>
             </table>
         </div>
     )

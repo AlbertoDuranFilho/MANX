@@ -1,16 +1,13 @@
 .conteiner-table{
     display: flex;
     justify-content: center;
-    width: 100%;
-    max-width: 500px;
-    overflow-y: scroll;
     align-items: center;
+    max-width: 500px;
 }
 
 .content-table{
     border-collapse: collapse;
     font-size: 0.9em;
-    max-width: 450px;
     border-radius: 5px 5px 0 0;
     box-shadow: 0 0 20px rgb(0, 0, 0, 0.15);
 }
@@ -24,9 +21,14 @@
 
 .content-table th,
 .content-table td {
-    padding: 12px 15px;
+    padding: 12px 8px;
     text-align: center;
 }
+.content-table td {
+    /* max-width: 135px; */
+    /* word-break: break-word; */
+}
+
 
 .content-table tbody tr {
     border-bottom: 1px solid #dddddd;
@@ -49,6 +51,8 @@
 .content-table tbody tr img {
     width: 20px;
     height: 20px;
+    cursor: pointer;
+    margin-left: 5px;
 }
 
 .content-table tbody tr button {
@@ -58,3 +62,5 @@
     cursor: pointer;
     transition: 0.2s;
 }
+
+

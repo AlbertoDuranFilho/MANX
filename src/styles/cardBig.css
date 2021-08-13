@@ -1,8 +1,7 @@
 .container-card-big{
     width: 100%;
     max-width: 520px;
-    height: 545px;
-
+    height: 97%;
     background: #ffffff;
     border-radius: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -59,9 +58,9 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-
     margin: 20px;
 
+    width: 100%;
 }
 
 .controller > h1{
@@ -114,38 +113,32 @@
 .select-days-week{
     width: 100%;
     max-width: 400px;
-    margin-bottom: 10px;
 }
+
 .select-index-task{
     width: 100%;
     max-width: 400px;
-    margin-bottom: 10px;
-
 }
+
 .select-output{
     width: 100%;
     max-width: 400px;
-    margin-bottom: 10px;
-
 }
 .select-time{
     width: 100%;
     max-width: 400px;
-    margin-bottom: 10px;
-
 }
 .select-action{
     width: 100%;
     max-width: 400px;
-    margin-bottom: 5px;
-
 }
 
 .button-confirmation{
     width: 100%;
     max-width: 300px;
     height: 40px;
-    margin-top: 10px;
+    margin-bottom: 20px;
+
       
     font-size: 14px;
     background: #0093E9;
@@ -172,15 +165,17 @@
 
     border-radius: 20px;
     border: none;
+    display: flex;
+
   }
 
   .modal-confirmation{
     
         position: absolute;
-        top: 40%;
-        left: 35%;
-        right: 35%;
-        bottom: 40%;
+        top: 30%;
+        left: 40%;
+        right: 40%;
+        bottom: 30%;
         background-color: #ffffff;
     
         border-radius: 20px;
@@ -199,9 +194,15 @@
       margin-bottom: 10px;
   }
 
+  .confirmation > p{
+      font-size: 60px;
+      margin-bottom: 10px;
+      margin-top: 15px;
+  }
+
   .button-ok{
     width: 100%;
-    max-width: 100px;
+    max-width: 150px;
     height: 40px;
     margin-top: 10px;
       
@@ -229,3 +230,118 @@
     background-color: rgba(0, 0, 0, 0.397);
       
   }
+
+  #environmentSelectEdit{
+    width: 100%;
+    max-width: 400px;
+    height: 37px;
+    padding-left: 5px;
+
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease 
+   
+  }
+   
+  #timeSelectEdit{
+    width: 100%;
+    max-width: 400px;
+    height: 37px;
+
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: all 150ms ease 
+
+    
+   
+  }
+  #actionSelectEdit{
+    width: 100%;
+    max-width: 400px;
+    height: 37px;
+    padding-left: 5px;
+
+
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease 
+   
+  }
+  .select{
+      display: grid;
+  }
+
+  .select::after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: #9098A9;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  }
+
+  .select select {
+    appearance: none;
+    padding: 0 1em 0 0;
+  }
+  .select select::-ms-expand {
+    display: none;
+  }
+
+  .select {
+
+    grid-template-areas: "select";
+  }
+  
+  select,
+  .select:after {
+      grid-area: select;
+      margin-right: 12px;
+  }
+
+  .select {
+
+    align-items: center;
+  }
+  
+  .select:after {
+    justify-self: end;
+  }
+
+  .tableBigCard{
+    overflow: auto;
+  }
+
+
+
+  /* #daysWeekSelectEdit{
+    width: 100%;
+    max-width: 400px;
+    height: 37px;
+
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 1px 3px -2px #9098A9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease 
+   
+  } */

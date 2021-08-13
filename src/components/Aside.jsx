@@ -1,13 +1,25 @@
 import { useContext } from 'react';
 import { DateContext } from '../contexts/DateContext';
 
-import Dashboard from '../assets/dashboard.svg';
 import Home from '../assets/home.png';
 import Logo from '../assets/logo.svg';
 import '../styles/aside.css'
 
+var dateTimeAll = '';
+
 export function Aside(){
     const {dataAtual} = useContext(DateContext);
+    var dateHours = dataAtual.getHours();
+    var dateMinutes = dataAtual.getMinutes();
+
+    if(dateHours < 10){
+        dateTimeAll = `0${dateHours}:${dateMinutes}`; 
+    } else if(dateMinutes < 10){
+        dateTimeAll = `${dateHours}:0${dateMinutes}`; 
+    } else{
+        dateTimeAll = `${dateHours}:${dateMinutes}`; 
+        
+    }
 
     return(
         <div className="container-aside">
@@ -25,7 +37,7 @@ export function Aside(){
 
             <div className='DateFormat'>
                 <h1 className='date'>{dataAtual.toLocaleDateString('pt-BR')}</h1>
-                <h1 className='time'>{dataAtual.toLocaleTimeString('pt-BR')}</h1>
+                <h1 className='time'>{dateTimeAll}</h1>
             </div>
 
         </div>

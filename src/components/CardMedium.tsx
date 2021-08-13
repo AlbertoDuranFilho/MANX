@@ -2,16 +2,13 @@ import { useContext } from 'react';
 import { AnalogContext } from '../contexts/AnalogContext';
 import { CircularProgressbar } from 'react-circular-progressbar';
 
+import Gota from '../assets/gota.png';
+
 import "react-circular-progressbar/dist/styles.css";
 import '../styles/cardMedium.css';
-import { socket } from '../App';
 
 export function CardMedium(){
     const {firstAnalog} = useContext(AnalogContext);
-
-    function handleAnalogRead(){
-        socket.send("AT+READ=A0");
-    }
 
     return (
         <div className='container-card-medium'>
@@ -23,8 +20,8 @@ export function CardMedium(){
                     value={firstAnalog}
                     text={`${firstAnalog}%`}
                 />
+                <img src={Gota} alt="Gota de água" />
             </div>
-            <button onClick={handleAnalogRead} className='button-bomba'>Acionar bomba</button>
         </div>
     )
 }

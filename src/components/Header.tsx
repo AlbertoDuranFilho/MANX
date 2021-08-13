@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
 
 import { socket } from '../App';
 import { AnalogContext } from '../contexts/AnalogContext';
@@ -156,17 +155,16 @@ export function Header(){
                 var dataAtual = new Date();
                 var num = dataAtual.getTime() - lastReceived.getTime();
 
-                if(num > 11000){
+                if(num > 6000){
                     connect.style.background = 'red';
                     connect.style.border = '1px solid #920303';
                 }
                 socket.send("AT+READALL?");
                 socket.send("AT+TASKS?");
                 
-            },10000)
+            },5000)
 
             setInterval(() => {
-                
                     var t = 0;
                     var t1 = tempo[0] & 0x0000ffff;
                     var t2 = (tempo[1] << 16) & 0xffff0000;
@@ -175,7 +173,7 @@ export function Header(){
 
                     setDataAtual(date)
 
-            },5000)
+            },50000)
 
             setInterval(() => {
 
@@ -201,8 +199,19 @@ export function Header(){
                                 }
                             }
                             
-                            if(i === 0){
-                                setIsDate(s);
+                            if(i === 0 ){
+                                if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
+                                    setIsDate("Todos os Dias");
+                                    
+                                } else if(s === "Seg,Ter,Qua,Qui,Sex"){
+                                    setIsDate("De Segunda a Sexta");
+
+                                } else if(s === "Dom,Sab"){
+                                    setIsDate("Final de semana");
+                                    
+                                } else{
+                                    setIsDate(s);
+                                }
 
                                 if(taskOutput[i] === 0){
                                     setIsEnvironment("Luzes da Piscina");
@@ -216,11 +225,31 @@ export function Header(){
                                     setIsAction("Ligar");
                                 }
 
-                                setIsTime(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                if(taskHours[i] < 10 && taskMinutes[i] < 10 ){
+                                    setIsTime(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                }else if(taskHours[i] < 10){
+                                    setIsTime(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                } else if(taskMinutes[i] < 10){
+                                    setIsTime(`${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                } else{
+                                    setIsTime(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                }
+
                             }
 
                             if(i === 1 ){
-                                setIsDateTask1(s);
+                                if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
+                                    setIsDateTask1("Todos os Dias");
+                                    
+                                } else if(s === "Seg,Ter,Qua,Qui,Sex"){
+                                    setIsDateTask1("De Segunda a Sexta");
+
+                                } else if(s === "Dom,Sab"){
+                                    setIsDateTask1("Final de semana");
+                                    
+                                } else{
+                                    setIsDateTask1(s);
+                                }
 
                                 if(taskOutput[i] === 0){
                                     setIsEnvironmentTask1("Luzes da Piscina");
@@ -234,11 +263,30 @@ export function Header(){
                                     setIsActionTask1("Ligar");
                                 } 
 
-                                setIsTimeTask1(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                if(taskHours[i] < 10 && taskMinutes[i] < 10 ){
+                                    setIsTimeTask1(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                }else if(taskHours[i] < 10){
+                                    setIsTimeTask1(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                } else if(taskMinutes[i] < 10){
+                                    setIsTimeTask1(`${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                } else{
+                                    setIsTimeTask1(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                }
                             }
 
-                            if(i === 2){
-                                setIsDateTask2(s);
+                            if(i === 2 ){
+                                if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
+                                    setIsDateTask2("Todos os Dias");
+                                    
+                                } else if(s === "Seg,Ter,Qua,Qui,Sex"){
+                                    setIsDateTask2("De Segunda a Sexta");
+
+                                } else if(s === "Dom,Sab"){
+                                    setIsDateTask2("Final de semana");
+                                    
+                                } else{
+                                    setIsDateTask2(s);
+                                }
 
                                 if(taskOutput[i] === 0){
                                     setIsEnvironmentTask2("Luzes da Piscina");
@@ -253,11 +301,30 @@ export function Header(){
                                     setIsActionTask2("Ligar");
                                 }
 
-                                setIsTimeTask2(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                if(taskHours[i] < 10 && taskMinutes[i] < 10 ){
+                                    setIsTimeTask2(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                }else if(taskHours[i] < 10){
+                                    setIsTimeTask2(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                } else if(taskMinutes[i] < 10){
+                                    setIsTimeTask2(`${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                } else{
+                                    setIsTimeTask2(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                }
                             }
 
                             if(i === 3 ){
-                                setIsDateTask3(s);
+                                if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
+                                    setIsDateTask3("Todos os Dias");
+                                    
+                                } else if(s === "Seg,Ter,Qua,Qui,Sex"){
+                                    setIsDateTask3("De Segunda a Sexta");
+
+                                } else if(s === "Dom,Sab"){
+                                    setIsDateTask3("Final de semana");
+                                    
+                                } else{
+                                    setIsDateTask3(s);
+                                }
 
                                 if(taskOutput[i] === 0){
                                     setIsEnvironmentTask3("Luzes da Piscina");
@@ -271,11 +338,30 @@ export function Header(){
                                     setIsActionTask3("Ligar");
                                 }
 
-                                setIsTimeTask3(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`);
+                                if(taskHours[i] < 10 && taskMinutes[i] < 10 ){
+                                    setIsTimeTask3(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                }else if(taskHours[i] < 10){
+                                    setIsTimeTask3(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                } else if(taskMinutes[i] < 10){
+                                    setIsTimeTask3(`${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                } else{
+                                    setIsTimeTask3(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                }
                             }
 
                             if(i === 4 ){
-                                setIsDateTask4(s);
+                                if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
+                                    setIsDateTask4("Todos os Dias");
+                                    
+                                } else if(s === "Seg,Ter,Qua,Qui,Sex"){
+                                    setIsDateTask4("De Segunda a Sexta");
+
+                                } else if(s === "Dom,Sab"){
+                                    setIsDateTask4("Final de semana");
+                                    
+                                } else{
+                                    setIsDateTask4(s);
+                                }
 
                                 if(taskOutput[i] === 0){
                                     setIsEnvironmentTask4("Luzes da Piscina");
@@ -289,11 +375,30 @@ export function Header(){
                                     setIsActionTask4("Ligar");
                                 }
                                 
-                                setIsTimeTask4(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                if(taskHours[i] < 10 && taskMinutes[i] < 10 ){
+                                    setIsTimeTask4(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                }else if(taskHours[i] < 10){
+                                    setIsTimeTask4(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                } else if(taskMinutes[i] < 10){
+                                    setIsTimeTask4(`${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                } else{
+                                    setIsTimeTask4(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                }
                             }
 
-                            if(i === 5 ){
-                                setIsDateTask5(s);
+                            if(i === 5){
+                                if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
+                                    setIsDateTask5("Todos os Dias");
+                                    
+                                } else if(s === "Seg,Ter,Qua,Qui,Sex"){
+                                    setIsDateTask5("De Segunda a Sexta");
+
+                                } else if(s === "Dom,Sab"){
+                                    setIsDateTask5("Final de semana");
+                                    
+                                } else{
+                                    setIsDateTask5(s);
+                                }
 
                                 if(taskOutput[i] === 0){
                                     setIsEnvironmentTask5("Luzes da Piscina");
@@ -307,11 +412,30 @@ export function Header(){
                                     setIsActionTask5("Ligar");
                                 }
                                 
-                                setIsTimeTask5(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                if(taskHours[i] < 10 && taskMinutes[i] < 10 ){
+                                    setIsTimeTask5(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                }else if(taskHours[i] < 10){
+                                    setIsTimeTask5(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                } else if(taskMinutes[i] < 10){
+                                    setIsTimeTask5(`${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                } else{
+                                    setIsTimeTask5(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                }
                             }
 
                             if(i === 6 ){
-                                setIsDateTask6(s);
+                                if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
+                                    setIsDateTask6("Todos os Dias");
+                                    
+                                } else if(s === "Seg,Ter,Qua,Qui,Sex"){
+                                    setIsDateTask6("De Segunda a Sexta");
+
+                                } else if(s === "Dom,Sab"){
+                                    setIsDateTask6("Final de semana");
+                                    
+                                } else{
+                                    setIsDateTask6(s);
+                                }
 
                                 if(taskOutput[i] === 0){
                                     setIsEnvironmentTask6("Luzes da Piscina");
@@ -325,11 +449,30 @@ export function Header(){
                                     setIsActionTask6("Ligar");
                                 }
 
-                                setIsTimeTask6(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                if(taskHours[i] < 10 && taskMinutes[i] < 10 ){
+                                    setIsTimeTask6(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                }else if(taskHours[i] < 10){
+                                    setIsTimeTask6(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                } else if(taskMinutes[i] < 10){
+                                    setIsTimeTask6(`${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                } else{
+                                    setIsTimeTask6(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                }
                             }
 
                             if(i === 7 ){
-                                setIsDateTask7(s);
+                                if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
+                                    setIsDateTask7("Todos os Dias");
+                                    
+                                } else if(s === "Seg,Ter,Qua,Qui,Sex"){
+                                    setIsDateTask7("De Segunda a Sexta");
+
+                                } else if(s === "Dom,Sab"){
+                                    setIsDateTask7("Final de semana");
+                                    
+                                } else{
+                                    setIsDateTask7(s);
+                                }
 
                                 if(taskOutput[i] === 0){
                                     setIsEnvironmentTask7("Luzes da Piscina");
@@ -343,11 +486,30 @@ export function Header(){
                                     setIsActionTask7("Ligar");
                                 }
                                 
-                                setIsTimeTask7(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                if(taskHours[i] < 10 && taskMinutes[i] < 10 ){
+                                    setIsTimeTask7(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                }else if(taskHours[i] < 10){
+                                    setIsTimeTask7(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                } else if(taskMinutes[i] < 10){
+                                    setIsTimeTask7(`${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                } else{
+                                    setIsTimeTask7(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                }
                             }
 
-                            if(i === 8 ){
-                                setIsDateTask8(s);
+                            if(i === 8){
+                                if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
+                                    setIsDateTask8("Todos os Dias");
+                                    
+                                } else if(s === "Seg,Ter,Qua,Qui,Sex"){
+                                    setIsDateTask8("De Segunda a Sexta");
+
+                                } else if(s === "Dom,Sab"){
+                                    setIsDateTask8("Final de semana");
+                                    
+                                } else{
+                                    setIsDateTask8(s);
+                                }
 
                                 if(taskOutput[i] === 0){
                                     setIsEnvironmentTask8("Luzes da Piscina");
@@ -361,11 +523,30 @@ export function Header(){
                                     setIsActionTask8("Ligar");
                                 }
 
-                                setIsTimeTask8(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                if(taskHours[i] < 10 && taskMinutes[i] < 10 ){
+                                    setIsTimeTask8(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                }else if(taskHours[i] < 10){
+                                    setIsTimeTask8(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                } else if(taskMinutes[i] < 10){
+                                    setIsTimeTask8(`${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                } else{
+                                    setIsTimeTask8(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                }
                             }
 
                             if(i === 9 ){
-                                setIsDateTask9(s);
+                                if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
+                                    setIsDateTask9("Todos os Dias");
+                                    
+                                } else if(s === "Seg,Ter,Qua,Qui,Sex"){
+                                    setIsDateTask9("De Segunda a Sexta");
+
+                                } else if(s === "Dom,Sab"){
+                                    setIsDateTask9("Final de semana");
+                                    
+                                } else{
+                                    setIsDateTask9(s);
+                                }
 
                                 if(taskOutput[i] === 0){
                                     setIsEnvironmentTask9("Luzes da Piscina");
@@ -379,17 +560,28 @@ export function Header(){
                                     setIsActionTask9("Ligar");
                                 }
                                 
-                                setIsTimeTask9(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                if(taskHours[i] < 10 && taskMinutes[i] < 10 ){
+                                    setIsTimeTask9(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                }else if(taskHours[i] < 10){
+                                    setIsTimeTask9(`0${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                } else if(taskMinutes[i] < 10){
+                                    setIsTimeTask9(`${taskHours[i].toString()}:${taskMinutes[i].toString()}0`)
+                                } else{
+                                    setIsTimeTask9(`${taskHours[i].toString()}:${taskMinutes[i].toString()}`)
+                                }
                             }
                         }
                     }
-            },5000)
+            },2000)
     };
         
     return(
         <div className='container-header'>
             <h1>Bem-vindo</h1>
-            <div id='connect'></div>
+            <div id='status'>
+                <p>Status: </p>
+                <div id='connect'></div>
+            </div>
         </div>
     )
 }

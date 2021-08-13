@@ -85,12 +85,23 @@ var time = '';
 var output = '';
 var action = '';
 
+var timeMinutesEdit = "";
+var timeHourEdit = "";
+
+var selectWeekEdit = 0;
+
+var idDataEdit = 0;
+var timeDataEdit = '';
+var environmentDataEdit = '';
+var actionDataEdit = '';
+
 export function CardBig(){
     const [modalTaskIsOpen, setModalTaskIsOpen] = useState(false);
     const [modalConfirmation, setModalConfirmation] = useState(false);
-    
+    const [modalDelete, setModalDelete] = useState(false);
+    const [modalEdit, setModalEdit] = useState(false);
+
     const { 
-        // isTask,
         isEnvironment,
         isEnvironmentTask1,
         isEnvironmentTask2,
@@ -101,7 +112,6 @@ export function CardBig(){
         isEnvironmentTask7,
         isEnvironmentTask8,
         isEnvironmentTask9,
-
         
         isTime,
         isTimeTask1,
@@ -134,7 +144,8 @@ export function CardBig(){
         isActionTask6,
         isActionTask7,
         isActionTask8,
-        isActionTask9
+        isActionTask9,
+
     } = useContext(TableContext);
 
     var data = [
@@ -152,50 +163,68 @@ export function CardBig(){
 
     useEffect(() => {
         handleListTableDelete();
-        console.log(data);
 
         if(data[0].weekDaysTask !== '' || data[1].weekDaysTask !== '' || data[2].weekDaysTask !== '' || data[3].weekDaysTask !== '' || data[4].weekDaysTask !== '' || data[5].weekDaysTask !== '' || data[6].weekDaysTask !== '' || data[7].weekDaysTask !== '' || data[8].weekDaysTask !== '' || data[9].weekDaysTask !== '' || data[0].timeTasks !== '255'){
-
             handleListTable();
-            
         } else{
             handleListTableDelete();
-            console.log("valores vazios");
         }
     
-    },[isTime, isTimeTask1, isTimeTask2, isTimeTask3, isTimeTask4, isTimeTask5, isTimeTask6, isTimeTask7, isTimeTask8, isTimeTask9])
+    },[
+        isDate, 
+        isDateTask1 , 
+        isDateTask2, 
+        isDateTask3, 
+        isDateTask4, 
+        isDateTask5, 
+        isDateTask6, 
+        isDateTask7, 
+        isDateTask8, 
+        isDateTask9, 
+        isTime, 
+        isTimeTask1, 
+        isTimeTask2, 
+        isTimeTask3, 
+        isTimeTask4, 
+        isTimeTask5, 
+        isTimeTask6, 
+        isTimeTask7, 
+        isTimeTask8, 
+        isTimeTask9
+    ])
 
     function handleOptionsWeek(value : any){
-
+        let sum = 0;
         for(var i = 0; i < 9; i++){
             if(value[i] !== undefined ){
-                // data.weekLabel = value[i].label;
-                week = value[i].value;
+                sum += value[i].value; 
             }
         }
+        week = sum;
     }
 
     function handleOptionsTime(value : any){
-        // data.labelTime = value.label;
         time = value.value;
     }
 
     function handleOptionsOutput(value : any ){
-        // data.environmentLabel = value.label
         output = value.value;
     }
 
     function handleOptionsAction(value : any ){
         action = value.value;
-        // data.zactionLabel = value.label;
     }
 
     function handleSetTask(){
-        if(output !== '' && action !== '' && time !== '' && week !== -1 ){
-            socket.send(`AT+TASKSET=5,${output},1,${time},${action}`)
-            console.log(`5,${output},1,${time},${action}`);
-            setModalTaskIsOpen(false);
-            setModalConfirmation(true);
+        if(output !== '' && action !== '' && time !== '' && week !== 0 ){
+            for(let i = 0; i < data.length; i++){
+                if(data[i].timeTasks === "255:255" || data[i].weekDaysTask === ""){
+                    socket.send(`AT+TASKSET=${i},${output},${week},${time},${action}`);
+                    console.log(`AT+TASKSET=${i},${output},${week},${time},${action}`);
+                }  
+                setModalTaskIsOpen(false);
+                setModalConfirmation(true);
+            }
 
         } else {
            alert("Preencha as informações");
@@ -210,6 +239,7 @@ export function CardBig(){
         action = '';
         setModalTaskIsOpen(true);
     }
+
     
     function closeModalTask() {
         setModalTaskIsOpen(false);
@@ -219,14 +249,88 @@ export function CardBig(){
     function closeModalConfirmation() {
         setModalConfirmation(false);
     }
+
+    function openModalDelete(id : any){
+        setModalDelete(true);
+        for(let i = 0; i < data.length; i++){
+            if(data[i].id === id){
+                socket.send(`AT+TASKCLEAR=${id}`);
+            }    
+        }
+        
+    }
+
+    function closeModelDelete(){
+        setModalDelete(false);
+    }
+
+    function closeModelEdit(){
+        setModalEdit(false);
+    }
+    function handleWeekSelectEdit(value : any){
+        let sum = 0;
+        for(var i = 0; i < 9; i++){
+            if(value[i] !== undefined ){
+                sum += value[i].value; 
+            }
+        }
+        selectWeekEdit = sum; 
+     
+    }
+
+    function handleEdit(dados : any){
+        idDataEdit = dados.id;
+        timeDataEdit = dados.timeTasks;
+        environmentDataEdit = dados.environmentTask;
+        actionDataEdit = dados.zactionTask;
+        setModalEdit(true);
+
+        let environmentEdit : HTMLSelectElement | any  = document.getElementById('environmentSelectEdit')!;
+        let timeEdit : HTMLInputElement | any  = document.getElementById('timeSelectEdit')!;
+        let actionEdit : HTMLSelectElement | any  = document.getElementById('actionSelectEdit')!;
+
+        // Retorna o valor da Saida (Ambiente) 
+        if(environmentDataEdit === "Luzes da Piscina"){
+            environmentEdit.selectedIndex = 1;
+        } else{
+            environmentEdit.selectedIndex = 2;
+        }
+        // Retorna o valor da Ação 
+        if(actionDataEdit === "Desligar"){
+            actionEdit.selectedIndex = 1;
+        } else{
+            actionEdit.selectedIndex = 2;
+        }
+        
+        timeEdit.value = timeDataEdit;
+
+    }
     
-   
+    function handleSetTaskEdit(){
+        let environmentEdit : HTMLSelectElement | any  = document.getElementById('environmentSelectEdit')!;
+        let timeEdit : HTMLInputElement | any  = document.getElementById('timeSelectEdit')!;
+        let actionEdit : HTMLSelectElement | any  = document.getElementById('actionSelectEdit')!;
+
+        timeHourEdit = timeEdit.value.substring(0,timeEdit.value.indexOf(":"));
+        timeMinutesEdit = timeEdit.value.substring(timeEdit.value.indexOf(":")+1);
+
+        if(selectWeekEdit !== 0 && actionEdit.value !== '' && timeEdit.value !== '' && environmentEdit.value !== '' ){
+            socket.send(`AT+TASKSET=${idDataEdit},${environmentEdit.value},${selectWeekEdit},${timeHourEdit},${timeMinutesEdit},${actionEdit.value}`);
+            // console.log(`AT+TASKSET=${idDataEdit},${environmentEdit.value},${selectWeekEdit},${timeHourEdit},${timeMinutesEdit},${actionEdit.value}`);
+    
+            setModalEdit(false);
+            setModalConfirmation(true);
+            
+        } else {
+           alert("Preencha as informações");
+        }
+    }
 
     function handleListTable(){
         var table: HTMLTableElement | any =  document.getElementById("tbody")!;
 
         for(let i = 0; i < data.length; i++){
-            if(data[i].weekDaysTask !== '' ){
+            if(data[i].weekDaysTask !== '' && data[i].timeTasks !== "255:255"){
                 let tr = table.insertRow();
 
                 let td_ambiente = tr.insertCell(); 
@@ -240,27 +344,20 @@ export function CardBig(){
                 td_data.innerText = data[i].weekDaysTask;
                 td_acao.innerText = data[i].zactionTask;
                 
-                let imgEdit = document.createElement('img')
+                let imgEdit = document.createElement('img');
                 imgEdit.src = `${Edit}`;
+                imgEdit.setAttribute('class', 'img-edit');
+                imgEdit.addEventListener('click', function(){handleEdit(data[i])}, true);
+
                 
                 let imgDelete = document.createElement('img');
                 imgDelete.src = `${Trash}`;
-                imgDelete.addEventListener('click', function(){handleDeleteRow(data[i].id)}, true);
+                imgDelete.setAttribute('class', 'img-delete');
+                imgDelete.addEventListener('click', function(){openModalDelete(data[i].id);}, true);
                 
                 td_opcoes.appendChild(imgEdit);
                 td_opcoes.appendChild(imgDelete);
             }
-
-        }
-    }
-
-    function handleDeleteRow(id : any){
-
-        for(let i = 0; i < data.length; i++){
-            if(data[i].id === id){
-                socket.send(`AT+TASKCLEAR=${id}`);
-            }    
-            console.log(i);
         }
     }
     
@@ -276,7 +373,9 @@ export function CardBig(){
                 <h1> Tarefas </h1>
                 <button onClick={openModalTask} className="button-date" >Nova Tarefa</button>
             </div>
+            <div className="tableBigCard">
             <Table />
+            </div>
                 <Modal 
                     isOpen={modalTaskIsOpen} 
                     className='modal'
@@ -286,7 +385,7 @@ export function CardBig(){
                 >
                     <div className='controller' >
                         <div className='title-header'>
-                            <h1>Agende uma terefa</h1>
+                            <h1>Agende uma tarefa</h1>
                             <button onClick={closeModalTask} className='fechar'>X</button>
                         </div>
                         <div className='select-days-week'>
@@ -295,16 +394,16 @@ export function CardBig(){
                                 id='daysWeekSelect'
                                 onChange={handleOptionsWeek} 
                                 options={optionsWeek} 
-                                isMulti  
+                                isMulti
                             />
                         </div>
 
                         <div className='select-output'>
                             <p>Ambientes</p> 
                             <Select 
-                                onChange={handleOptionsOutput} 
-                                options={optionsOutput} 
                                 id='environmentSelect'
+                                onChange={handleOptionsOutput} 
+                                options={optionsOutput}
                             />
                         </div>
 
@@ -332,6 +431,61 @@ export function CardBig(){
 
                 </Modal>
                 <Modal 
+                    isOpen={modalEdit} 
+                    className='modal'
+                    overlayClassName="overlay"
+                    onRequestClose={handleSetTaskEdit}
+                    shouldCloseOnOverlayClick={false}
+                >
+                    <div className='controller' >
+                        <div className='title-header'>
+                            <h1>Edite sua tarefa</h1>
+                            <button onClick={closeModelEdit} className='fechar'>X</button>
+                        </div>
+                        <div className='select-days-week'>
+                            <p>Dias da Semana</p>
+                            <Select 
+                                id='daysWeekSelectEdit'
+                                onChange={handleWeekSelectEdit} 
+                                options={optionsWeek} 
+                                isMulti
+                            />
+                               
+                        </div>
+
+                        <div className='select-output'>
+                            <p>Ambientes</p> 
+                            <div className="select">
+                                <select  id='environmentSelectEdit'>
+                                    <option value=""></option>
+                                    <option className='option' value="0">Luzes da Piscina</option>
+                                    <option className='option' value="1">Luzes do Campo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className='select-time'>
+                            <p>Hora</p> 
+                            <input type="time" id='timeSelectEdit'/>
+                        </div>
+
+                        <div className='select-action'>
+                            <p>Ação</p> 
+                            <div className="select">
+                                <select  id='actionSelectEdit'>
+                                    <option value=""></option>
+                                    <option value="0">Desligar</option>
+                                    <option value="1">Ligar</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button className='button-confirmation' onClick={handleSetTaskEdit} >Confirmar</button>
+
+                    </div>
+
+                </Modal>
+                <Modal 
                     isOpen={modalConfirmation} 
                     className='modal-confirmation'
                     overlayClassName="overlay"
@@ -340,7 +494,20 @@ export function CardBig(){
                 >
                     <div className='confirmation'>
                         <h1>Tarefa Agendada</h1>
+                        <p>😄</p>
                         <button className='button-ok' onClick={closeModalConfirmation}>OK!</button>
+                    </div>
+                </Modal>
+                <Modal 
+                    isOpen={modalDelete} 
+                    className='modal-confirmation'
+                    overlayClassName="overlay"
+                    onRequestClose={closeModelDelete}
+                    shouldCloseOnOverlayClick={false}
+                >
+                    <div className='confirmation'>
+                        <h1>Tarefa Excluida</h1>
+                        <button className='button-ok' onClick={closeModelDelete}>OK!</button>
                     </div>
                 </Modal>
         </div>

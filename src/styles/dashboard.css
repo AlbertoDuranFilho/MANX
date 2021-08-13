@@ -1,5 +1,7 @@
 .container-main{
+    display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .grid-area{
@@ -18,7 +20,7 @@
     grid-template-areas: 
         "aside header header header header "
         'aside card-medium card-medium card-big card-big'
-        "aside card-small card-small-2 .. .. "
+        "aside card-small card-small-2 card-big card-big "
     ;
 }
 
