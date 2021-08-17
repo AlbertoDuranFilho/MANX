@@ -72,6 +72,17 @@ export function Header(){
         setIsTimeTask7,
         setIsTimeTask8,
         setIsTimeTask9,
+
+        setIsWeekDaysNumber,
+        setIsWeekDaysNumber1,
+        setIsWeekDaysNumber2,
+        setIsWeekDaysNumber3,
+        setIsWeekDaysNumber4,
+        setIsWeekDaysNumber5,
+        setIsWeekDaysNumber6,
+        setIsWeekDaysNumber7,
+        setIsWeekDaysNumber8,
+        setIsWeekDaysNumber9,
     } = useContext(TableContext);
     
     //---------------- Função que é acionada quando o Server responde ----------------\\
@@ -199,7 +210,9 @@ export function Header(){
                                 }
                             }
                             
+
                             if(i === 0 ){
+                                setIsWeekDaysNumber(taskDay[i]);
                                 if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
                                     setIsDate("Todos os Dias");
                                     
@@ -238,6 +251,8 @@ export function Header(){
                             }
 
                             if(i === 1 ){
+                                setIsWeekDaysNumber1(taskDay[i]);
+
                                 if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
                                     setIsDateTask1("Todos os Dias");
                                     
@@ -275,6 +290,8 @@ export function Header(){
                             }
 
                             if(i === 2 ){
+                                setIsWeekDaysNumber2(taskDay[i]);
+
                                 if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
                                     setIsDateTask2("Todos os Dias");
                                     
@@ -313,6 +330,7 @@ export function Header(){
                             }
 
                             if(i === 3 ){
+                                setIsWeekDaysNumber3(taskDay[i]);
                                 if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
                                     setIsDateTask3("Todos os Dias");
                                     
@@ -350,6 +368,7 @@ export function Header(){
                             }
 
                             if(i === 4 ){
+                                setIsWeekDaysNumber4(taskDay[i]);
                                 if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
                                     setIsDateTask4("Todos os Dias");
                                     
@@ -387,6 +406,7 @@ export function Header(){
                             }
 
                             if(i === 5){
+                                setIsWeekDaysNumber5(taskDay[i]);
                                 if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
                                     setIsDateTask5("Todos os Dias");
                                     
@@ -424,6 +444,7 @@ export function Header(){
                             }
 
                             if(i === 6 ){
+                                setIsWeekDaysNumber6(taskDay[i]);
                                 if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
                                     setIsDateTask6("Todos os Dias");
                                     
@@ -461,6 +482,7 @@ export function Header(){
                             }
 
                             if(i === 7 ){
+                                setIsWeekDaysNumber7(taskDay[i]);
                                 if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
                                     setIsDateTask7("Todos os Dias");
                                     
@@ -498,6 +520,7 @@ export function Header(){
                             }
 
                             if(i === 8){
+                                setIsWeekDaysNumber8(taskDay[i]);
                                 if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
                                     setIsDateTask8("Todos os Dias");
                                     
@@ -535,6 +558,7 @@ export function Header(){
                             }
 
                             if(i === 9 ){
+                                setIsWeekDaysNumber9(taskDay[i]);
                                 if(s === "Dom,Seg,Ter,Qua,Qui,Sex,Sab"){
                                     setIsDateTask9("Todos os Dias");
                                     

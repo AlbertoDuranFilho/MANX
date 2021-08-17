@@ -1,3 +1,4 @@
+import { socket } from '../App';
 import { useContext } from 'react';
 import { DateContext } from '../contexts/DateContext';
 
@@ -21,10 +22,15 @@ export function Aside(){
         
     }
 
+    function handleSetTime(){
+        var epoch = (new Date()).getTime() / 1000;
+        socket.send('AT+TIME=' + Math.trunc(epoch));
+
+        console.log('AT+TIME=' + Math.trunc(epoch));
+    }
+
     return(
         <div className="container-aside">
-
-
             <div className="aside-menu">
                 <img className='logo' src={Logo} alt="Logo" />
                 <ul>
@@ -38,8 +44,8 @@ export function Aside(){
             <div className='DateFormat'>
                 <h1 className='date'>{dataAtual.toLocaleDateString('pt-BR')}</h1>
                 <h1 className='time'>{dateTimeAll}</h1>
+                <button className="button-time" onClick={handleSetTime}>Atualizar</button>
             </div>
-
         </div>
     )
 }

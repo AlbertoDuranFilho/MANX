@@ -36,3 +36,46 @@
     font-size: 20px;
     margin-right: 10px;
 }
+
+@media (max-width: 400px){
+
+    .container-header {
+        width: 100%;
+        max-width: 300px;
+
+        margin-left: 0px;
+
+
+    }
+    .container-header h1 {
+        font-size: 24px;
+    }
+
+    #connect{
+        width: 20px;
+        height: 20px;
+        background: red;
+    
+        margin-right: 0px;
+        
+        border-radius: 50px;
+    
+        border: 1px solid #920303;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px 0px;
+    
+    }
+    
+    #status{
+        display: flex;
+        background:  #F9F8FD !important;
+        border: 1px solid #F9F8FD !important;
+    
+        align-items: center;
+    }
+    
+    #status p{
+        font-size: 18px;
+        margin-right: 10px;
+    }
+    
+}

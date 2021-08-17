@@ -88,7 +88,26 @@ type TableContextType = {
     isActionTask9: string;
     setIsActionTask9: (value: string) => void;
 
-
+    isWeekDaysNumber: number;
+    setIsWeekDaysNumber: (value: number) => void;
+    isWeekDaysNumber1: number;
+    setIsWeekDaysNumber1: (value: number) => void;
+    isWeekDaysNumber2: number;
+    setIsWeekDaysNumber2: (value: number) => void;
+    isWeekDaysNumber3: number;
+    setIsWeekDaysNumber3: (value: number) => void;
+    isWeekDaysNumber4: number;
+    setIsWeekDaysNumber4: (value: number) => void;
+    isWeekDaysNumber5: number;
+    setIsWeekDaysNumber5: (value: number) => void;
+    isWeekDaysNumber6: number;
+    setIsWeekDaysNumber6: (value: number) => void;
+    isWeekDaysNumber7: number;
+    setIsWeekDaysNumber7: (value: number) => void;
+    isWeekDaysNumber8: number;
+    setIsWeekDaysNumber8: (value: number) => void;
+    isWeekDaysNumber9: number;
+    setIsWeekDaysNumber9: (value: number) => void;
 }
 
 type TableContextProviderProps = {
@@ -143,6 +162,17 @@ export function TableProvider(props: TableContextProviderProps){
     const [isActionTask7, setIsActionTask7] = useState('');
     const [isActionTask8, setIsActionTask8] = useState('');
     const [isActionTask9, setIsActionTask9] = useState('');
+    
+    const [isWeekDaysNumber, setIsWeekDaysNumber] = useState(0);
+    const [isWeekDaysNumber1, setIsWeekDaysNumber1] = useState(0);
+    const [isWeekDaysNumber2, setIsWeekDaysNumber2] = useState(0);
+    const [isWeekDaysNumber3, setIsWeekDaysNumber3] = useState(0);
+    const [isWeekDaysNumber4, setIsWeekDaysNumber4] = useState(0);
+    const [isWeekDaysNumber5, setIsWeekDaysNumber5] = useState(0);
+    const [isWeekDaysNumber6, setIsWeekDaysNumber6] = useState(0);
+    const [isWeekDaysNumber7, setIsWeekDaysNumber7] = useState(0);
+    const [isWeekDaysNumber8, setIsWeekDaysNumber8] = useState(0);
+    const [isWeekDaysNumber9, setIsWeekDaysNumber9] = useState(0);
 
     return(
         <TableContext.Provider value={{
@@ -233,6 +263,27 @@ export function TableProvider(props: TableContextProviderProps){
             setIsActionTask8,
             isActionTask9,
             setIsActionTask9,
+
+            isWeekDaysNumber,
+            isWeekDaysNumber1,
+            isWeekDaysNumber2,
+            isWeekDaysNumber3,
+            isWeekDaysNumber4,
+            isWeekDaysNumber5,
+            isWeekDaysNumber6,
+            isWeekDaysNumber7,
+            isWeekDaysNumber8,
+            isWeekDaysNumber9,
+            setIsWeekDaysNumber,
+            setIsWeekDaysNumber1,
+            setIsWeekDaysNumber2,
+            setIsWeekDaysNumber3,
+            setIsWeekDaysNumber4,
+            setIsWeekDaysNumber5,
+            setIsWeekDaysNumber6,
+            setIsWeekDaysNumber7,
+            setIsWeekDaysNumber8,
+            setIsWeekDaysNumber9,
 
         }}>
             {props.children}

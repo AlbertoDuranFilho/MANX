@@ -29,17 +29,17 @@ export function Dashboard(){
                 <div className='grid-card-medium'>
                     <CardMedium />
                 </div>
-                <div className='grid-card-big'>
-                    <CardBig />
-                </div>
-
                 <div className='grid-card-small'>
                     <CardSmall title='Piscina' photo={Piscina} checked={firstOutput} saida={"0"} />
                 </div>
                 <div className='grid-card-small-2'>
                     <CardSmall title='Soccer' photo={Futebol} checked={secondOutput} saida={"1"}  />
                 </div>
-
+               
+                <div className='grid-card-big'>
+                    <CardBig />
+                </div>
+      
             </div>
         </div>
             

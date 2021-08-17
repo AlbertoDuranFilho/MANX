@@ -24,10 +24,6 @@
     padding: 12px 8px;
     text-align: center;
 }
-.content-table td {
-    /* max-width: 135px; */
-    /* word-break: break-word; */
-}
 
 
 .content-table tbody tr {
@@ -61,6 +57,16 @@
     margin-left: 5px;
     cursor: pointer;
     transition: 0.2s;
+}
+
+.invisible{
+    visibility: hidden;
+}
+
+@media (max-width : 400px){
+    .invisible{
+        display: none;
+    }
 }
 
 

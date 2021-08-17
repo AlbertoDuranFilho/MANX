@@ -9,3 +9,9 @@ body{
     color: #000;
     font-family: 'Poppins', sans-serif;
 }
+
+@media (max-width : 400px){
+    body{
+        background-color: #F9F8FD;
+    }
+}

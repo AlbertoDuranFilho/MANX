@@ -92,6 +92,7 @@ var selectWeekEdit = 0;
 
 var idDataEdit = 0;
 var timeDataEdit = '';
+var weekDaysEdit = 0;
 var environmentDataEdit = '';
 var actionDataEdit = '';
 
@@ -100,6 +101,8 @@ export function CardBig(){
     const [modalConfirmation, setModalConfirmation] = useState(false);
     const [modalDelete, setModalDelete] = useState(false);
     const [modalEdit, setModalEdit] = useState(false);
+    const [value, setValue] = useState('');
+    const [value2, setValue2] = useState({});
 
     const { 
         isEnvironment,
@@ -146,19 +149,30 @@ export function CardBig(){
         isActionTask8,
         isActionTask9,
 
+        isWeekDaysNumber,
+        isWeekDaysNumber1,
+        isWeekDaysNumber2,
+        isWeekDaysNumber3,
+        isWeekDaysNumber4,
+        isWeekDaysNumber5,
+        isWeekDaysNumber6,
+        isWeekDaysNumber7,
+        isWeekDaysNumber8,
+        isWeekDaysNumber9,
+
     } = useContext(TableContext);
 
     var data = [
-        {id: 0, environmentTask: isEnvironment, timeTasks: isTime, weekDaysTask: isDate, zactionTask: isAction },
-        {id: 1, environmentTask: isEnvironmentTask1, timeTasks: isTimeTask1, weekDaysTask: isDateTask1, zactionTask: isActionTask1 },
-        {id: 2, environmentTask: isEnvironmentTask2, timeTasks: isTimeTask2, weekDaysTask: isDateTask2, zactionTask: isActionTask2 },
-        {id: 3, environmentTask: isEnvironmentTask3, timeTasks: isTimeTask3, weekDaysTask: isDateTask3, zactionTask: isActionTask3 },
-        {id: 4, environmentTask: isEnvironmentTask4, timeTasks: isTimeTask4, weekDaysTask: isDateTask4, zactionTask: isActionTask4 },
-        {id: 5, environmentTask: isEnvironmentTask5, timeTasks: isTimeTask5, weekDaysTask: isDateTask5, zactionTask: isActionTask5 },
-        {id: 6, environmentTask: isEnvironmentTask6, timeTasks: isTimeTask6, weekDaysTask: isDateTask6, zactionTask: isActionTask6 },
-        {id: 7, environmentTask: isEnvironmentTask7, timeTasks: isTimeTask7, weekDaysTask: isDateTask7, zactionTask: isActionTask7 },
-        {id: 8, environmentTask: isEnvironmentTask8, timeTasks: isTimeTask8, weekDaysTask: isDateTask8, zactionTask: isActionTask8 },
-        {id: 9, environmentTask: isEnvironmentTask9, timeTasks: isTimeTask9, weekDaysTask: isDateTask9, zactionTask: isActionTask9 },
+        {id: 0, environmentTask: isEnvironment, timeTasks: isTime, weekDaysTask: isDate, zactionTask: isAction, weekDaysNumber: isWeekDaysNumber },
+        {id: 1, environmentTask: isEnvironmentTask1, timeTasks: isTimeTask1, weekDaysTask: isDateTask1, zactionTask: isActionTask1, weekDaysNumber: isWeekDaysNumber1 },
+        {id: 2, environmentTask: isEnvironmentTask2, timeTasks: isTimeTask2, weekDaysTask: isDateTask2, zactionTask: isActionTask2, weekDaysNumber: isWeekDaysNumber2 },
+        {id: 3, environmentTask: isEnvironmentTask3, timeTasks: isTimeTask3, weekDaysTask: isDateTask3, zactionTask: isActionTask3, weekDaysNumber: isWeekDaysNumber3 },
+        {id: 4, environmentTask: isEnvironmentTask4, timeTasks: isTimeTask4, weekDaysTask: isDateTask4, zactionTask: isActionTask4, weekDaysNumber: isWeekDaysNumber4 },
+        {id: 5, environmentTask: isEnvironmentTask5, timeTasks: isTimeTask5, weekDaysTask: isDateTask5, zactionTask: isActionTask5, weekDaysNumber: isWeekDaysNumber5 },
+        {id: 6, environmentTask: isEnvironmentTask6, timeTasks: isTimeTask6, weekDaysTask: isDateTask6, zactionTask: isActionTask6, weekDaysNumber: isWeekDaysNumber6 },
+        {id: 7, environmentTask: isEnvironmentTask7, timeTasks: isTimeTask7, weekDaysTask: isDateTask7, zactionTask: isActionTask7, weekDaysNumber: isWeekDaysNumber7 },
+        {id: 8, environmentTask: isEnvironmentTask8, timeTasks: isTimeTask8, weekDaysTask: isDateTask8, zactionTask: isActionTask8, weekDaysNumber: isWeekDaysNumber8 },
+        {id: 9, environmentTask: isEnvironmentTask9, timeTasks: isTimeTask9, weekDaysTask: isDateTask9, zactionTask: isActionTask9, weekDaysNumber: isWeekDaysNumber9 },
     ];
 
     useEffect(() => {
@@ -277,18 +291,28 @@ export function CardBig(){
         selectWeekEdit = sum; 
      
     }
-
+    
     function handleEdit(dados : any){
+        var arrayIndefinido = [];
         idDataEdit = dados.id;
+        weekDaysEdit = dados.weekDaysNumber
         timeDataEdit = dados.timeTasks;
         environmentDataEdit = dados.environmentTask;
         actionDataEdit = dados.zactionTask;
+        
+        for(let i = 0; i < 7; i++){
+            if(weekDaysEdit & (1 << i)){
+                arrayIndefinido.push(optionsWeek[i]);
+            }
+        }
+        setValue2(arrayIndefinido);
+
         setModalEdit(true);
 
         let environmentEdit : HTMLSelectElement | any  = document.getElementById('environmentSelectEdit')!;
         let timeEdit : HTMLInputElement | any  = document.getElementById('timeSelectEdit')!;
         let actionEdit : HTMLSelectElement | any  = document.getElementById('actionSelectEdit')!;
-
+        
         // Retorna o valor da Saida (Ambiente) 
         if(environmentDataEdit === "Luzes da Piscina"){
             environmentEdit.selectedIndex = 1;
@@ -449,6 +473,10 @@ export function CardBig(){
                                 onChange={handleWeekSelectEdit} 
                                 options={optionsWeek} 
                                 isMulti
+                                defaultValue={value2}
+                                // value={value2}
+                                // inputValue={value2}
+
                             />
                                
                         </div>
@@ -511,8 +539,6 @@ export function CardBig(){
                     </div>
                 </Modal>
         </div>
-    )
-
-    
+    )  
 }
 

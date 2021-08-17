@@ -2,6 +2,7 @@
     width: 100%;
     max-width: 520px;
     height: 97%;
+    max-height: 640px;
     background: #ffffff;
     border-radius: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -330,18 +331,68 @@
 
 
 
-  /* #daysWeekSelectEdit{
-    width: 100%;
-    max-width: 400px;
-    height: 37px;
+  @media (max-width : 400px){
+    .container-card-big{
+      width: 100%;
+      max-width: 350px;
+      margin-left: 0px;
+  
+  }
 
-    border: 1px solid rgb(204, 204, 204);
-    border-radius: 5px;
-    background: white;
-    box-shadow: 0 1px 3px -2px #9098A9;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 16px;
-    transition: all 150ms ease 
-   
-  } */
+  .modal{
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    right: 10%;
+    bottom: 15%;
+    background-color: #ffffff;
+
+    border-radius: 20px;
+    border: none;
+    display: flex;
+
+  }
+
+  .modal-confirmation{
+    
+        position: absolute;
+        top: 35%;
+        left: 15%;
+        right: 15%;
+        bottom: 35%;
+        background-color: #ffffff;
+    
+        border-radius: 20px;
+      
+  }
+
+  .button-confirmation{
+    width: 100%;
+    max-width: 200px;
+
+  }
+
+  .button-ok{
+    width: 100%;
+    max-width: 150px;
+  }
+
+
+  .title-header{
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+
+    font-size: 10px;
+
+    
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+  }
+
+  .title-header > h1{
+    margin-left: 5%;
+  }
+}

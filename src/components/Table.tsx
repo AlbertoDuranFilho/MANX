@@ -11,6 +11,7 @@ export function Table (){
                         <th>Data</th>
                         <th>Ação</th>
                         <th>Opções</th>
+                        <th className='invisible'></th>
                     </tr>
                 </thead>
                 <tbody id='tbody'></tbody>
