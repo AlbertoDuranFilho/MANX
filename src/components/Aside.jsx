@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import { DateContext } from '../contexts/DateContext';
 
 import Home from '../assets/home.png';
-import Logo from '../assets/logo.svg';
 import '../styles/aside.css'
 
 var dateTimeAll = '';
@@ -32,7 +31,7 @@ export function Aside(){
     return(
         <div className="container-aside">
             <div className="aside-menu">
-                <img className='logo' src={Logo} alt="Logo" />
+                <h1 className='logo'> MANX </h1>
                 <ul>
                     <li className=' list active'>
                         <img src={Home} alt='dashboard'/>

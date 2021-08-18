@@ -10,6 +10,7 @@
     font-size: 0.9em;
     border-radius: 5px 5px 0 0;
     box-shadow: 0 0 20px rgb(0, 0, 0, 0.15);
+
 }
 
 .content-table thead tr{
@@ -67,6 +68,19 @@
     .invisible{
         display: none;
     }
+
+    .conteiner-table{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 350px;
+
+    }
+
+    .content-table{
+        max-width: 350px;
+    }
+    
 }
 
 

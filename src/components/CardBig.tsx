@@ -397,8 +397,10 @@ export function CardBig(){
                 <h1> Tarefas </h1>
                 <button onClick={openModalTask} className="button-date" >Nova Tarefa</button>
             </div>
+            <div className="tableBigCard-x">
             <div className="tableBigCard">
             <Table />
+            </div>
             </div>
                 <Modal 
                     isOpen={modalTaskIsOpen} 
