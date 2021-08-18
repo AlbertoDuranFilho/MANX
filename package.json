@@ -11,25 +11,21 @@
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
-    "@types/react-datepicker": "^4.1.3",
     "@types/react-dom": "^17.0.0",
     "@types/react-modal": "^3.12.1",
     "@types/react-select": "^4.0.17",
     "@types/react-toggle": "^4.0.3",
     "react": "^17.0.2",
     "react-circular-progressbar": "^2.0.4",
-    "react-datepicker": "^4.1.1",
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.3",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
-    "react-table": "^7.7.0",
     "react-toggle": "^4.1.2",
     "reconnecting-websocket": "^4.4.0",
     "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1",
-    "websocket-as-promised": "0.3.0",
-    "ws-await": "^4.2.3"
+    "web-vitals": "^1.0.1"
+
   },
   "scripts": {
     "start": "react-scripts start",
