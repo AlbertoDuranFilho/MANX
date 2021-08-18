@@ -6,7 +6,7 @@ import { TableProvider } from './contexts/TableContext';
 import { ToogleProvider } from './contexts/ToogleContext';
 import { Dashboard } from "./pages/dashboard";
 
-export const socket = new ReconnectingWebSocket('ws://192.168.1.253:80');
+export const socket = new ReconnectingWebSocket('wss://192.168.1.253:80');
 
 function App() {
 
