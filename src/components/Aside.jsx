@@ -1,5 +1,5 @@
-import { socket } from '../App';
 import { useContext } from 'react';
+import { socket } from '../App';
 import { DateContext } from '../contexts/DateContext';
 
 import Home from '../assets/home.png';
@@ -35,7 +35,7 @@ export function Aside(){
                 <ul>
                     <li className=' list active'>
                         <img src={Home} alt='dashboard'/>
-                        <a href="#">Dashboard</a>
+                        <p>Dashboard</p>
                     </li>
                 </ul>
             </div>

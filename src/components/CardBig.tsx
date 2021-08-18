@@ -101,7 +101,6 @@ export function CardBig(){
     const [modalConfirmation, setModalConfirmation] = useState(false);
     const [modalDelete, setModalDelete] = useState(false);
     const [modalEdit, setModalEdit] = useState(false);
-    const [value, setValue] = useState('');
     const [value2, setValue2] = useState({});
 
     const { 
@@ -476,9 +475,6 @@ export function CardBig(){
                                 options={optionsWeek} 
                                 isMulti
                                 defaultValue={value2}
-                                // value={value2}
-                                // inputValue={value2}
-
                             />
                                
                         </div>

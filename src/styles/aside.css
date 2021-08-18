@@ -60,12 +60,12 @@
     
 }
 
-.aside-menu a{
-    text-decoration: none;
+.aside-menu p{
     color: #fff;
-    transition:  0.2s;    
+    transition:  0.2s;  
+    cursor: pointer;  
 }
-.aside-menu ul .active a{
+.aside-menu ul .active p{
     color: #000;
 }
 
