@@ -3,6 +3,7 @@ import Toggle from 'react-toggle';
 import { ToogleContext } from '../contexts/ToogleContext';
 
 import Iluminacao from '../assets/iluminacao.svg';
+import ManWalking from '../assets/man-walking.png';
 import { socket } from '../App';
 
 import '../styles/cardSmall.css';
@@ -12,11 +13,12 @@ type CardProps = {
     photo: string;
     checked:  boolean;
     saida: string;
+    id: string;
 };
 
 export function CardSmall(props: CardProps){
     const {firstOutput, setFirstOutput, secondOutput, setSecondOutput, thirdOutput, setThirdOutput} = useContext(ToogleContext);
-    
+
     function handleChange(){
         switch(props.saida){
             case "0":
@@ -65,6 +67,11 @@ export function CardSmall(props: CardProps){
                 checked={props.checked}
                 
                />
+            </div>
+            <div className="input">
+                <img src={ManWalking} alt="" />
+                <h1>Presença</h1>
+                <div id={props.id}></div>
             </div>
 
             <img src={props.photo} alt="Imagem" />

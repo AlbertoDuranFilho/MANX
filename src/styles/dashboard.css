@@ -8,7 +8,7 @@
     width: 100%;
     max-width: 1270px;
     height: 100vh;
-    max-height: 820px;
+    max-height: 700px;
 
     background: #F9F8FD;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -50,7 +50,7 @@
     grid-area: card-small-2;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
 
     .grid-area{
         /* display: flex;

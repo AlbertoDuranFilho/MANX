@@ -88,7 +88,7 @@
 }
 
 .fechar {
-    background: #b30202;
+    background: #F61A15;
     width: 30px;
     height: 30px;
 
@@ -103,7 +103,7 @@
 
 .fechar:hover{
     cursor: pointer;
-    background: rgb(109, 1, 1);
+    background: #920e0c;
 
 }
 
@@ -183,7 +183,7 @@
       
   }
 
-  .confirmation{
+    .confirmation{
       margin: 20px;
       display: flex;
       flex-direction: column;
@@ -201,24 +201,57 @@
       margin-top: 15px;
   }
 
-  .button-ok{
+  .buttonDelete{
+    display: flex;
+    flex-direction: row;
     width: 100%;
-    max-width: 150px;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  #button-ok{
+    width: 100%;
+    max-width: 100px;
     height: 40px;
     margin-top: 10px;
+    margin-left: 10px;
       
     font-size: 14px;
-    background: #0093E9;
+    background: #F61A15;
     color: #ffffff;
 
     border: none;
-    border-radius: 50px;
+    border-radius: 30px;
 
     transition: 0.2s;
 }
 
-.button-ok:hover{
-    background: #025180;
+
+#button-ok:hover{
+    background: #920e0c;
+    cursor: pointer;
+}
+.button-cancel{
+    width: 100%;
+    max-width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+      
+    font-size: 14px;
+    background: #a6a7a8;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 30px;
+
+    transition: 0.2s;
+}
+
+
+.button-cancel:hover{
+    background: #676768;
     cursor: pointer;
 }
 
@@ -326,12 +359,45 @@
   }
 
   .tableBigCard{
-    overflow-y: auto;
+    overflow: auto;
   }
 
+  @media(min-height : 700px){
 
+    .modal{
+      position: absolute;
+      top: 13%;
+      left: 37%;
+      right: 37%;
+      bottom: 20%;
+      background-color: #ffffff;
+  
+      border-radius: 20px;
+      border: none;
+      display: flex;
+  
+    }
 
-  @media (max-width : 400px){
+    .modal-confirmation{
+      
+      position: absolute;
+      top: 30%;
+      left: 41%;
+      right: 41%;
+      bottom: 40%;
+      background-color: #ffffff;
+      
+      border-radius: 20px;
+      
+    }
+
+    .buttonDelete{
+      margin-top: 10px;
+    }
+    
+  }
+
+  @media (max-width : 500px){
     .container-card-big{
       width: 100%;
       max-width: 350px;

@@ -147,6 +147,33 @@ export function Header(){
                 }
                 
                 //----------- FIM------------------\\
+
+                //------------ Comando de gravar no estado "analog" o valor dos sensores analogicos-------------\\
+                // Primeira Entrada\\
+                if(digitalInput[0] !== undefined){
+                    var presence1 = document.getElementById('presence0')!;
+                    if(digitalInput[0] === 1){
+                        presence1.style.background = '#0093E9';
+                        // console.log('oi');
+                    } else {
+                        presence1.style.background = '#D6D6D6';
+
+                    }
+                    // console.log(presence);
+                }
+                if(digitalInput[1] !== undefined){
+                    var presence2 = document.getElementById('presence1')!;
+                    if(digitalInput[1] === 1){
+                        presence2.style.background = '#0093E9';
+                        // console.log('oi');
+                    } else {
+                        presence2.style.background = '#D6D6D6';
+
+                    }
+                    // console.log(presence);
+                }
+                
+                //----------- FIM------------------\\
             
             } else{
             console.log(event.data)
@@ -166,14 +193,14 @@ export function Header(){
                 var dataAtual = new Date();
                 var num = dataAtual.getTime() - lastReceived.getTime();
 
-                if(num > 6000){
-                    connect.style.background = 'red';
-                    connect.style.border = '1px solid #920303';
+                if(num > 2000){
+                    connect.style.background = '#F61A15';
+                    connect.style.border = '1px solid #F61A15';
                 }
                 socket.send("AT+READALL?");
                 socket.send("AT+TASKS?");
                 
-            },5000)
+            },1000)
 
             setInterval(() => {
                     var t = 0;
@@ -184,7 +211,7 @@ export function Header(){
 
                     setDataAtual(date)
 
-            },50000)
+            },60000)
 
             setInterval(() => {
 
@@ -596,7 +623,7 @@ export function Header(){
                             }
                         }
                     }
-            },2000)
+            },1000)
     };
         
     return(

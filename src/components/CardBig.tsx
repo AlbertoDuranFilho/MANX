@@ -265,12 +265,20 @@ export function CardBig(){
 
     function openModalDelete(id : any){
         setModalDelete(true);
+
+        var buttonDelete = document.getElementById('button-ok')!;
+        buttonDelete.addEventListener('click', function(){handleDeleteTask(id);}, true);
+        
+    }
+
+    function handleDeleteTask(id : any){
         for(let i = 0; i < data.length; i++){
             if(data[i].id === id){
                 socket.send(`AT+TASKCLEAR=${id}`);
             }    
         }
-        
+        setModalDelete(false);
+
     }
 
     function closeModelDelete(){
@@ -396,10 +404,8 @@ export function CardBig(){
                 <h1> Tarefas </h1>
                 <button onClick={openModalTask} className="button-date" >Nova Tarefa</button>
             </div>
-            <div className="tableBigCard-x">
             <div className="tableBigCard">
             <Table />
-            </div>
             </div>
                 <Modal 
                     isOpen={modalTaskIsOpen} 
@@ -533,7 +539,11 @@ export function CardBig(){
                 >
                     <div className='confirmation'>
                         <h1>Tarefa Excluida</h1>
-                        <button className='button-ok' onClick={closeModelDelete}>OK!</button>
+                        <p>🤔</p>
+                        <div className="buttonDelete">
+                            <button className='button-cancel' onClick={closeModelDelete}>Cancelar</button>
+                            <button id='button-ok' onClick={handleDeleteTask}>Excluir</button>
+                        </div>
                     </div>
                 </Modal>
         </div>

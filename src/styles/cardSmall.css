@@ -17,20 +17,28 @@
 
 .container-card-small > h1{
     margin-left: 15px;
-    margin-top: 10px;
-    margin-bottom: -20px;
+    margin-top: 5px;
+    margin-bottom: -15px;
 
     font-size: 20px;
+}
+.container-card-small > img{
+  height: 200px;
+  margin-bottom: -20px;
+
+
 }
 
 .toogle-light-controller{
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    margin-top: 20px;
 
 }
 .toogle-light-controller > img{
     margin-left: 10px;
+    width: 20px;
 
 }
 
@@ -39,14 +47,43 @@
 }
 
 .light > h1{
-    font-size: 20px;
+    font-size: 16px;
+    margin-left: -10px;
     
 }
 
 .light > p{
     font-size: 14px;
     color: #ACACAC;
+    
+  }
 
+.input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  
+    margin-top: 5px;
+    margin-bottom: -15px;
+}
+  
+.input > img{
+    margin-left: -10px;
+    width: 20px;
+}
+  
+.input > h1{
+    font-size: 16px;
+    margin-left: -25px;
+}
+
+.input #presence1, .input #presence0{
+  background: #D6D6D6;
+  width: 50px;
+  height: 22px;
+  margin-right: -10px;
+
+  border-radius: 30px;
 }
 
 /* ------------------ TOGGLE ---------------------*/ 
@@ -195,67 +232,70 @@
         box-shadow: 0px 0px 5px 5px #0099E0;
       }
 
-      @media (max-width: 400px){
-        .container-card-small{
-          width: 100%;
-          max-width: 150px;
-          height: 200px;
-          margin-left: 30px;
-      
-          background: #ffffff;
-          border-radius: 20px;
-          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-      
-          display: flex;
-          flex-direction: column;
-      
-          justify-content: space-between;
-      }
-      
-      .container-card-small > h1{
-          margin-left: 15px;
-          margin-top: 10px;
-          margin-bottom: -20px;
-      
-          font-size: 20px;
-      }
-      .container-card-small img{
-          width: 150px;
-      }
+/* Display Size 500px */
 
-      .react-toggle {
-        margin-left: 20px;
-      }
+
+@media (max-width: 500px){
+    .container-card-small{
+      width: 100%;
+      max-width: 150px;
+      height: 200px;
+      margin-left: 30px;
+  
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  
+      display: flex;
+      flex-direction: column;
+  
+      justify-content: space-between;
+  }
+  
+  .container-card-small > h1{
+      margin-left: 15px;
+      margin-top: 10px;
+      margin-bottom: -20px;
+  
+      font-size: 20px;
+  }
+  .container-card-small img{
+      width: 150px;
+  }
+
+  .react-toggle {
+    margin-left: 20px;
+  }
+  
+  .toogle-light-controller{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+  }
+  .toogle-light-controller > img{
+      margin-left: 10px;
+      display: none;
+      width: 20px;
+  
+  }
+  
+  .light{
+      margin-left: 0px;
+  }
+  
+  .light > h1{
+      font-size: 20px;
       
-      .toogle-light-controller{
-          display: flex;
-          align-items: center;
-          justify-content: center;
-      
-      }
-      .toogle-light-controller > img{
-          margin-left: 10px;
-          display: none;
-          width: 20px;
-      
-      }
-      
-      .light{
-          margin-left: 0px;
-      }
-      
-      .light > h1{
-          font-size: 20px;
-          
-      }
-      
-      .light > p{
-          font-size: 14px;
-          color: #ACACAC;
-      
-      }
-      
-      }
+  }
+  
+  .light > p{
+      font-size: 14px;
+      color: #ACACAC;
+  
+  }
+  
+}
       
   
   

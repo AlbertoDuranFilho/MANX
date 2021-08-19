@@ -14,12 +14,12 @@
 #connect{
     width: 25px;
     height: 25px;
-    background: red;
+    background: #F61A15;
 
     margin-right: 40px;
     border-radius: 50px;
 
-    border: 1px solid #920303;
+    border: 1px solid #b1110e;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px 0px;
 
 }
@@ -37,7 +37,7 @@
     margin-right: 10px;
 }
 
-@media (max-width: 400px){
+@media (max-width: 500px){
 
     .container-header {
         width: 100%;
@@ -54,13 +54,13 @@
     #connect{
         width: 20px;
         height: 20px;
-        background: red;
+        background: #F61A15;
     
         margin-right: 0px;
         
         border-radius: 50px;
     
-        border: 1px solid #920303;
+        border: 1px solid #b1110e;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px 0px;
     
     }

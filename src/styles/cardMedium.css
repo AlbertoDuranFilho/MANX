@@ -30,7 +30,7 @@
        width: 50px;
        height: 50px;
 
-       margin-top: 74px;
+       margin-top: 4.7em;
 }
 
 .button-bomba{
@@ -61,7 +61,13 @@
        font-size: 24px;
 }
 
-@media (max-width: 400px){
+@media(min-height : 700px){
+       .circular-bar img{
+              margin-top: 8.7em;
+       }
+}
+
+@media (max-width: 500px){
        .container-card-medium{
               width: 100%;
               max-width: 330px;

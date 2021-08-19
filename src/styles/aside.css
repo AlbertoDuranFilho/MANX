@@ -114,7 +114,7 @@
     background: #ffffff4d;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .container-aside{
         display: flex;
         flex-direction: column;
