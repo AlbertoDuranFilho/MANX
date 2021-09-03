@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from 'react';
-import { socket } from '../App';
-import Select from 'react-select';
 import Modal from 'react-modal';
+import Select from 'react-select';
 
 import { Table } from './Table';
 import { TableContext } from '../contexts/TableContext';
+import { MessageSocketContext } from '../contexts/MessageContext';
 
 import Trash from '../assets/trash.svg';
 import Edit from '../assets/editar.svg';
@@ -161,6 +161,8 @@ export function CardBig(){
 
     } = useContext(TableContext);
 
+    const { sendAtCommand } = useContext(MessageSocketContext);
+
     var data = [
         {id: 0, environmentTask: isEnvironment, timeTasks: isTime, weekDaysTask: isDate, zactionTask: isAction, weekDaysNumber: isWeekDaysNumber },
         {id: 1, environmentTask: isEnvironmentTask1, timeTasks: isTimeTask1, weekDaysTask: isDateTask1, zactionTask: isActionTask1, weekDaysNumber: isWeekDaysNumber1 },
@@ -230,17 +232,25 @@ export function CardBig(){
 
     function handleSetTask(){
         if(output !== '' && action !== '' && time !== '' && week !== 0 ){
-            for(let i = 0; i < data.length; i++){
+            let i = 0
+            for(i = 0; i < data.length; i++){
                 if(data[i].timeTasks === "255:255" || data[i].weekDaysTask === ""){
-                    socket.send(`AT+TASKSET=${i},${output},${week},${time},${action}`);
-                    console.log(`AT+TASKSET=${i},${output},${week},${time},${action}`);
+                    break;
                 }  
+            }
+            if(i < 10){
+                sendAtCommand(`AT+TASKSET=${i},${output},${week},${time},${action}`);
+                sendAtCommand('AT+TASKS?');
                 setModalTaskIsOpen(false);
                 setModalConfirmation(true);
+            } else{
+                setModalTaskIsOpen(false);
+                alert("Lista Cheia, Remova alguma tarefa e tente novamente");
             }
-
+            
         } else {
-           alert("Preencha as informações");
+            alert("Preencha as informações");
+            console.log(`AT+TASKSET=,${output},${week},${time},${action}`);
         }
 
     }
@@ -252,7 +262,6 @@ export function CardBig(){
         action = '';
         setModalTaskIsOpen(true);
     }
-
     
     function closeModalTask() {
         setModalTaskIsOpen(false);
@@ -274,7 +283,9 @@ export function CardBig(){
     function handleDeleteTask(id : any){
         for(let i = 0; i < data.length; i++){
             if(data[i].id === id){
-                socket.send(`AT+TASKCLEAR=${id}`);
+                sendAtCommand(`AT+TASKCLEAR=${id}`);
+                sendAtCommand('AT+TASKS?');
+                break;
             }    
         }
         setModalDelete(false);
@@ -313,7 +324,7 @@ export function CardBig(){
             }
         }
         setValue2(arrayIndefinido);
-
+        handleWeekSelectEdit(arrayIndefinido);
         setModalEdit(true);
 
         let environmentEdit : HTMLSelectElement | any  = document.getElementById('environmentSelectEdit')!;
@@ -344,16 +355,15 @@ export function CardBig(){
 
         timeHourEdit = timeEdit.value.substring(0,timeEdit.value.indexOf(":"));
         timeMinutesEdit = timeEdit.value.substring(timeEdit.value.indexOf(":")+1);
-
-        if(selectWeekEdit !== 0 && actionEdit.value !== '' && timeEdit.value !== '' && environmentEdit.value !== '' ){
-            socket.send(`AT+TASKSET=${idDataEdit},${environmentEdit.value},${selectWeekEdit},${timeHourEdit},${timeMinutesEdit},${actionEdit.value}`);
-            // console.log(`AT+TASKSET=${idDataEdit},${environmentEdit.value},${selectWeekEdit},${timeHourEdit},${timeMinutesEdit},${actionEdit.value}`);
-    
+        if((selectWeekEdit > 0) && (actionEdit.selectedIndex > -1) && (environmentEdit.selectedIndex > -1) && (timeEdit.value !== '')){
+            sendAtCommand(`AT+TASKSET=${idDataEdit},${environmentEdit.value},${selectWeekEdit},${timeHourEdit},${timeMinutesEdit},${actionEdit.value}`);
+            sendAtCommand('AT+TASKS?');
+            
             setModalEdit(false);
             setModalConfirmation(true);
             
         } else {
-           alert("Preencha as informações");
+            alert("Preencha as informações");
         }
     }
 
@@ -398,14 +408,21 @@ export function CardBig(){
         tbody.innerHTML = '';
     }
 
+    function handleUpdate(){
+        sendAtCommand("AT+TASKS?");
+    }
+
     return (
         <div className='container-card-big'>
             <div className='task-header'>
                 <h1> Tarefas </h1>
-                <button onClick={openModalTask} className="button-date" >Nova Tarefa</button>
+                <div className='buttons-task'>
+                    <button onClick={handleUpdate} className="button-update" >Atualizar</button>
+                    <button onClick={openModalTask} className="button-date" >Nova Tarefa</button>
+                </div>
             </div>
             <div className="tableBigCard">
-            <Table />
+                <Table />
             </div>
                 <Modal 
                     isOpen={modalTaskIsOpen} 
@@ -413,6 +430,8 @@ export function CardBig(){
                     overlayClassName="overlay"
                     onRequestClose={handleSetTask}
                     shouldCloseOnOverlayClick={false}
+                    ariaHideApp={false}
+
                 >
                     <div className='controller' >
                         <div className='title-header'>
@@ -467,6 +486,8 @@ export function CardBig(){
                     overlayClassName="overlay"
                     onRequestClose={handleSetTaskEdit}
                     shouldCloseOnOverlayClick={false}
+                    ariaHideApp={false}
+
                 >
                     <div className='controller' >
                         <div className='title-header'>
@@ -523,19 +544,22 @@ export function CardBig(){
                     overlayClassName="overlay"
                     onRequestClose={closeModalConfirmation}
                     shouldCloseOnOverlayClick={false}
+                    ariaHideApp={false}
                 >
                     <div className='confirmation'>
-                        <h1>Tarefa Agendada</h1>
+                        <h1>Sucesso</h1>
                         <p>😄</p>
-                        <button className='button-ok' onClick={closeModalConfirmation}>OK!</button>
+                        <button className='button-confirmation' onClick={closeModalConfirmation}>OK!</button>
                     </div>
                 </Modal>
                 <Modal 
                     isOpen={modalDelete} 
-                    className='modal-confirmation'
+                    className='modal-delete'
                     overlayClassName="overlay"
                     onRequestClose={closeModelDelete}
                     shouldCloseOnOverlayClick={false}
+                    ariaHideApp={false}
+
                 >
                     <div className='confirmation'>
                         <h1>Tarefa Excluida</h1>

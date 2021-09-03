@@ -31,7 +31,7 @@ export function Aside(){
     return(
         <div className="container-aside">
             <div className="aside-menu">
-                <h1 className='logo'> MANX </h1>
+                <h1 className='logo'> Manx </h1>
                 <ul>
                     <li className=' list active'>
                         <img src={Home} alt='dashboard'/>
@@ -40,9 +40,9 @@ export function Aside(){
                 </ul>
             </div>
 
-            <div className='DateFormat'>
-                <h1 className='date'>{dataAtual.toLocaleDateString('pt-BR')}</h1>
-                <h1 className='time'>{dateTimeAll}</h1>
+            <div id='DateFormat'>
+                <h1 className='date'>{dataAtual.toLocaleDateString('pt-BR')} &nbsp;&nbsp; {dateTimeAll}</h1>
+                {/* <h1 className='time'>{dateTimeAll}</h1> */}
                 <button className="button-time" onClick={handleSetTime}>Atualizar</button>
             </div>
         </div>

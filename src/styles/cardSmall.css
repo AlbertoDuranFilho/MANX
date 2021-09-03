@@ -260,11 +260,13 @@
       font-size: 20px;
   }
   .container-card-small img{
+    margin-bottom:-35px;
       width: 150px;
+
   }
 
   .react-toggle {
-    margin-left: 20px;
+    margin-left: 40px;
   }
   
   .toogle-light-controller{
@@ -281,11 +283,11 @@
   }
   
   .light{
-      margin-left: 0px;
+      margin-left: 20px;
   }
   
   .light > h1{
-      font-size: 20px;
+      font-size: 16px;
       
   }
   
@@ -294,6 +296,30 @@
       color: #ACACAC;
   
   }
+
+  .input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  
+    margin-top: 5px;
+    margin-bottom: -15px;
+}
+  
+.input > img{
+    display: none;
+}
+  
+.input > h1{
+    font-size: 16px;
+    margin-left: 0px;
+}
+
+.input #presence1, .input #presence0{
+  margin-right: 0px;
+}
+
+
   
 }
       

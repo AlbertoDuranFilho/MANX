@@ -42,13 +42,12 @@
     .container-header {
         width: 100%;
         max-width: 300px;
-
         margin-left: 0px;
 
 
     }
     .container-header h1 {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     #connect{
@@ -74,7 +73,7 @@
     }
     
     #status p{
-        font-size: 18px;
+        font-size: 16px;
         margin-right: 10px;
     }
     

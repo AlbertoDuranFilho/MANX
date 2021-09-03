@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import Toggle from 'react-toggle';
 import { ToogleContext } from '../contexts/ToogleContext';
+import { MessageSocketContext } from '../contexts/MessageContext';
 
 import Iluminacao from '../assets/iluminacao.svg';
 import ManWalking from '../assets/man-walking.png';
-import { socket } from '../App';
 
 import '../styles/cardSmall.css';
 
@@ -18,36 +18,37 @@ type CardProps = {
 
 export function CardSmall(props: CardProps){
     const {firstOutput, setFirstOutput, secondOutput, setSecondOutput, thirdOutput, setThirdOutput} = useContext(ToogleContext);
+    const {sendAtCommand} = useContext(MessageSocketContext);
 
     function handleChange(){
         switch(props.saida){
             case "0":
                 if(firstOutput === false){
                     setFirstOutput(true);
-                    socket.send("AT+TURNON=Q" + props.saida);
+                    sendAtCommand("AT+TURNON=Q" + props.saida);
                 } else{
                     setFirstOutput(false)
-                    socket.send("AT+TURNOFF=Q" + props.saida);
+                    sendAtCommand("AT+TURNOFF=Q" + props.saida);
                 }
             break;
     
             case "1":
                 if(secondOutput === false){
                     setSecondOutput(true);
-                    socket.send("AT+TURNON=Q" + props.saida);
+                    sendAtCommand("AT+TURNON=Q" + props.saida);
                 } else{
                     setSecondOutput(false)
-                    socket.send("AT+TURNOFF=Q" + props.saida);
+                    sendAtCommand("AT+TURNOFF=Q" + props.saida);
                 }
             break;
             
             case "2":
                 if(thirdOutput === false){
                     setThirdOutput(true);
-                    socket.send("AT+TURNON=Q" + props.saida);
+                    sendAtCommand("AT+TURNON=Q" + props.saida);
                 } else{
                     setThirdOutput(false)
-                    socket.send("AT+TURNOFF=Q" + props.saida);
+                    sendAtCommand("AT+TURNOFF=Q" + props.saida);
                 }
             break;
         }

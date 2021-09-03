@@ -61,7 +61,7 @@
        font-size: 24px;
 }
 
-@media(min-height : 700px){
+@media(min-height : 750px){
        .circular-bar img{
               margin-top: 8.7em;
        }
@@ -70,7 +70,7 @@
 @media (max-width: 500px){
        .container-card-medium{
               width: 100%;
-              max-width: 330px;
+              max-width: 400px;
               height: 280px;
               margin-left: 0px;
        

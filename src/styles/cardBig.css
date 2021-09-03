@@ -13,6 +13,11 @@
 
 }
 
+.buttons-task{
+  display: flex;
+  align-self: flex-end;
+  margin-right: 10px;
+}
 
 .button-date{
    width: 120px;
@@ -35,6 +40,27 @@
     background: #025180;
     cursor: pointer;
 }
+.button-update{
+   width: 120px;
+   height: 30px;
+
+   margin-right: 10px;
+   
+   background: #0093E9;
+   color: #ffffff;
+
+   border: none;
+   border-radius: 50px;
+
+   transition: 0.2s;
+   align-self: flex-end;
+
+}
+
+.button-update:hover{
+    background: #025180;
+    cursor: pointer;
+}
 
 .container-card-big h1{
     margin-top: 10px;
@@ -51,8 +77,6 @@
 
     margin-bottom: 10px;
 }
-
-
 
 .controller{
     display: flex;
@@ -106,8 +130,6 @@
     background: #920e0c;
 
 }
-
-
 
 /*-------------- Select-------------- */
 
@@ -183,6 +205,20 @@
       
   }
 
+  .modal-delete{
+        
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    right: 40%;
+    bottom: 30%;
+    background-color: #ffffff;
+
+    border-radius: 20px;
+      
+    
+  }
+
     .confirmation{
       margin: 20px;
       display: flex;
@@ -231,6 +267,28 @@
 #button-ok:hover{
     background: #920e0c;
     cursor: pointer;
+}
+
+.button-confirmation{
+  width: 100%;
+    max-width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+      
+    font-size: 14px;
+    background: #0093E9;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 30px;
+
+    transition: 0.2s;
+}
+
+.button-confirmation:hover{
+  background: #025180;
+  cursor: pointer;
 }
 .button-cancel{
     width: 100%;
@@ -362,81 +420,140 @@
     overflow: auto;
   }
 
-  @media(min-height : 700px){
+  @media(min-height : 750px ){
+    @media(min-width : 800px){
 
-    .modal{
+      .modal{
+        position: absolute;
+        top: 13%;
+        left: 37%;
+        right: 37%;
+        bottom: 20%;
+        background-color: #ffffff;
+        
+        border-radius: 20px;
+        border: none;
+        display: flex;
+        
+      }
+      
+      .modal-confirmation{
+        
+        position: absolute;
+        top: 30%;
+        left: 41%;
+        right: 41%;
+        bottom: 40%;
+        background-color: #ffffff;
+        
+        border-radius: 20px;
+        
+      }
+      .modal-delete{
+        
+        position: absolute;
+        top: 30%;
+        left: 41%;
+        right: 41%;
+        bottom: 40%;
+        background-color: #ffffff;
+        
+        border-radius: 20px;
+        
+      }
+      
+      .buttonDelete{
+        margin-top: 10px;
+      }
+      
+    }
+  }
+    
+    @media (max-width : 500px){
+      .container-card-big{
+        width: 100%;
+        max-width: 350px;
+        margin-left: 0px;
+        
+      }
+
+      .buttons-task{
+        margin-right: 0px;
+      }
+
+      .button-date{
+        width: 80px;
+      }
+
+      .button-update{
+        width: 80px;
+      }
+      
+      .modal{
       position: absolute;
-      top: 13%;
-      left: 37%;
-      right: 37%;
-      bottom: 20%;
+      top: 11%;
+      left: 10%;
+      right: 10%;
+      bottom: 15%;
       background-color: #ffffff;
-  
+
       border-radius: 20px;
       border: none;
       display: flex;
-  
+
     }
-
-    .modal-confirmation{
-      
-      position: absolute;
-      top: 30%;
-      left: 41%;
-      right: 41%;
-      bottom: 40%;
-      background-color: #ffffff;
-      
-      border-radius: 20px;
-      
-    }
-
-    .buttonDelete{
-      margin-top: 10px;
-    }
-    
-  }
-
-  @media (max-width : 500px){
-    .container-card-big{
-      width: 100%;
-      max-width: 350px;
-      margin-left: 0px;
-  
-  }
-
-  .modal{
-    position: absolute;
-    top: 15%;
-    left: 10%;
-    right: 10%;
-    bottom: 15%;
-    background-color: #ffffff;
-
-    border-radius: 20px;
-    border: none;
-    display: flex;
-
-  }
 
   .modal-confirmation{
     
         position: absolute;
         top: 35%;
-        left: 15%;
-        right: 15%;
+        left: 17%;
+        right: 17%;
         bottom: 35%;
         background-color: #ffffff;
     
         border-radius: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      
+  }
+  .modal-delete{
+    
+        position: absolute;
+        top: 35%;
+        left: 15%;
+        right: 15%;
+        bottom: 30%;
+        background-color: #ffffff;
+    
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
       
   }
 
+  
+
   .button-confirmation{
     width: 100%;
+    min-height: 40px;
     max-width: 200px;
+    margin: 0;
 
   }
+
+  .confirmation > h1{
+    font-size: 24px;
+    margin-bottom: 0px;
+}
+
+.confirmation > p{
+    font-size: 60px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
 
   .button-ok{
     width: 100%;

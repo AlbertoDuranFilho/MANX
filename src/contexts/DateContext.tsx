@@ -12,7 +12,7 @@ type DateContextProviderProps = {
 export const DateContext = createContext({} as DateContextType)
 
 export function DateProvider(props: DateContextProviderProps){
-    const [dataAtual, setDataAtual] = useState( new Date());
+    const [dataAtual, setDataAtual] = useState( new Date(0));
 
     return(
         <DateContext.Provider value={{

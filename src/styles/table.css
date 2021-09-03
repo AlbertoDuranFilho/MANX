@@ -80,6 +80,26 @@
     .content-table{
         max-width: 350px;
     }
+
+    .content-table thead tr{
+       font-size: 11px;
+    }
+    
+    .content-table th,
+    .content-table td {
+        padding: 12px 8px;
+        text-align: center;
+       font-size: 11px;
+
+    }
+
+    .content-table tbody tr img {
+        width: 20px;
+        height: 15px;
+        cursor: pointer;
+        margin-left: 0px;
+    }
+    
     
 }
 

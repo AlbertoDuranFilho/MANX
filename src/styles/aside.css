@@ -69,8 +69,8 @@
     color: #000;
 }
 
-.DateFormat{
-    display: flex;
+#DateFormat{
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -80,12 +80,8 @@
     text-decoration: none;
     color: white;
     font-size: 18px;
-}
-.time {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+
 }
 
 .logo{
@@ -104,14 +100,15 @@
     border: none;
     border-radius: 50px;
 
-    align-self: flex-end;
+    align-self: center;
     margin-right: 10px;
 
     transition: 0.2s;
+    cursor: pointer;
 }
 
 .button-time:hover{
-    background: #ffffff4d;
+    background: #ffffffbd;
 }
 
 @media (max-width: 500px) {
@@ -119,7 +116,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 330px;
+        max-width: 400px;
         height: 95%;
         max-height: 754px;
 
@@ -127,12 +124,14 @@
         justify-content: center;
 
         margin-left: 0px;
+    }
 
-    
+    .aside-menu h1{
+        font-size: 22px;
+        margin-bottom: -5px;
     }
 
     .aside-menu{
-
         align-items: center;
         justify-content: center;
         margin-top: 10px;
@@ -143,24 +142,30 @@
         display: none;
     }
 
-    .DateFormat{
+    #DateFormat{
 
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        font-size: 14px;
     }
     
     .date {
         text-decoration: none;
         color: white;
         font-size: 18px;
-    }
-    .time {
-        text-decoration: none;
-        color: white;
-        font-size: 18px;
         margin-bottom: 10px;
+    }
+
+    .button-time{
+        width: 100px;
+        height: 35px;
+        font-size: 14px;
+        background: #ffffff44;
+        color: #ffffff;
+        margin-bottom: 15px;
+ 
     }
 
    
